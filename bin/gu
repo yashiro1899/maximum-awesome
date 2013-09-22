@@ -1,0 +1,18 @@
+#!/bin/bash
+
+
+GIT="/usr/local/bin/git"
+if [ $# -gt 0 ]; then
+    MSG=$@', at'$(date '+%n%c')
+else
+    $GIT svn info &> /dev/null
+    if [ 0 -ne $? ]; then
+        MSG=$(date '+%s')
+    else
+        MSG=$($GIT log -1 --format="previous commit:
+   %H")
+    fi
+fi
+
+$GIT commit -am "$MSG"
+

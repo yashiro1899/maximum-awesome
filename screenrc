@@ -1,0 +1,21 @@
+term "xterm-256color"
+escape ^Yy
+
+defscrollback 30000
+startup_message off
+caption always '%{bk}%-w%{gk}%n %t%{bk}%+w %{wk}%=%c ' # for homebrew
+# caption always '%{bw} %{bw}%-w%{rw}%n %t%{bw}%+w %{mw}%=%c ' # for ocean
+
+
+# 0
+chdir "$HOME/Documents/workspace/"
+screen -t ice
+
+# 1
+chdir "$HOME/Documents/workspace/"
+screen -t ice/s
+
+# 2
+chdir "$HOME"
+screen -t home
+

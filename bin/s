@@ -1,0 +1,2 @@
+#!/bin/bash
+screen -r -d -S icewhite || screen -S icewhite

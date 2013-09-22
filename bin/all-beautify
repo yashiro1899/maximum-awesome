@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+var beautify = require("beautifier");
+var html = require("html");
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+process.stdin.on('data', function(chunk) {
+    var name = process.argv[2];
+    var suffix = name.split(".");
+
+    suffix = suffix[suffix.length - 1];
+    switch (suffix) {
+    case "js":
+    case "json":
+    case "jsx":
+        beauty = beautify.js_beautify;
+        break;
+    case "css":
+        beauty = beautify.css_beautify;
+        break;
+    case "html":
+    case "tpl":
+        beauty = html.prettyPrint;
+        break;
+    default:
+        console.log("filetype is not supported.");
+        process.exit(1);
+        break;
+    }
+
+    process.stdout.write(beauty(chunk));
+    process.exit(0)
+});
+

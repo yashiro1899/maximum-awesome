@@ -143,17 +143,24 @@ exec /Applications/MacVim.app/Contents/MacOS/Vim "$@"
     install_github_bundle 'gmarik','vundle'
     sh 'vim -c "BundleInstall" -c "q" -c "q"'
   end
+
+  desc 'Install Git-completion'
+  task :git_completion do
+    step 'git_completion'
+    sh 'curl -sL -o ~/.bin/git-completion.bash https://raw.github.com/git/git/master/contrib/completion/git-completion.bash'
+  end
 end
 
 desc 'Install these config files.'
 task :default do
   Rake::Task['install:brew'].invoke
-  Rake::Task['install:the_silver_searcher'].invoke
+#   Rake::Task['install:the_silver_searcher'].invoke
   Rake::Task['install:iterm'].invoke
   Rake::Task['install:ctags'].invoke
-  Rake::Task['install:reattach_to_user_namespace'].invoke
+#   Rake::Task['install:reattach_to_user_namespace'].invoke
   Rake::Task['install:tmux'].invoke
-  Rake::Task['install:macvim'].invoke
+  Rake::Task['install:git_completion'].invoke
+#   Rake::Task['install:macvim'].invoke
 
   # TODO install gem ctags?
   # TODO run gem ctags?
@@ -163,6 +170,7 @@ task :default do
   link_file 'tmux.conf'             , '~/.tmux.conf'
   link_file 'vimrc'                 , '~/.vimrc'
   link_file 'vimrc.bundles'         , '~/.vimrc.bundles'
+  link_file 'screenrc'              , '~/.screenrc'
   unless File.exist?(File.expand_path('~/.vimrc.local'))
     cp File.expand_path('vimrc.local'), File.expand_path('~/.vimrc.local'), :verbose => true
   end

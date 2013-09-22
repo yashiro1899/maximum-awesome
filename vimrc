@@ -27,28 +27,27 @@ set clipboard=unnamed                                        " yank and paste wi
 set directory-=.                                             " don't store swapfiles in the current directory
 set encoding=utf-8
 set expandtab                                                " expand tabs to spaces
+set hlsearch
 set ignorecase                                               " case-insensitive search
 set incsearch                                                " search as you type
-set laststatus=2                                             " always show statusline
 set list                                                     " show trailing whitespace
 set listchars=tab:▸\ ,trail:▫
 set number                                                   " show line numbers
 set ruler                                                    " show where you are
 set scrolloff=3                                              " show context above/below cursorline
-set shiftwidth=2                                             " normal mode indentation commands use 2 spaces
+set shiftwidth=4                                             " normal mode indentation commands use 4 spaces
 set showcmd
 set smartcase                                                " case-sensitive search if any caps
-set softtabstop=2                                            " insert mode tab and backspace use 2 spaces
-set tabstop=8                                                " actual tabs occupy 8 characters
+set softtabstop=4                                            " insert mode tab and backspace use 4 spaces
+set tabstop=4                                                " actual tabs occupy 8 characters
 set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
 set wildmenu                                                 " show a navigable menu for tab completion
-set wildmode=longest,list,full
 
 " Enable basic mouse behavior such as resizing buffers.
 set mouse=a
-if exists('$TMUX')  " Support resizing in tmux
+" if exists('$TMUX')  " Support resizing in tmux
   set ttymouse=xterm2
-endif
+" endif
 
 " keyboard shortcuts
 let mapleader = ','
@@ -56,23 +55,48 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-map <leader>l :Align
 nmap <leader>a :Ack<space>
-nmap <leader>b :CtrlPBuffer<CR>
 nmap <leader>d :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<CR>
-nmap <leader>t :CtrlP<CR>
-nmap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
-nmap <leader>] :TagbarToggle<CR>
+nmap <leader>l :NERDTreeFind<CR>
+nmap <leader>t :TagbarToggle<CR>
 nmap <leader><space> :call whitespace#strip_trailing()<CR>
 nmap <leader>g :GitGutterToggle<CR>
-nmap <leader>c <Plug>Kwbd
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+nmap <C-n> :tabnext<CR>
+nmap <C-p> :tabprevious<CR>
+imap <C-f> <Right>
+imap <C-b> <Left>
+imap <C-n> <Down>
+imap <C-p> <Up>
+imap <C-a> <Home>
+imap <C-e> <End>
+imap <C-d> <Delete>
+vmap <lt> <lt>gv
+vmap > >gv
+" html tag closer
+imap <C-t> <lt>><lt>/><ESC>3hi
+imap <C-c> <ESC>vT<yf/pF<i
+
+" folding
+map <silent> <leader>f :set foldmethod=indent<CR>zM<CR>
+map <silent> <leader>F :set foldmethod=manual<CR>zR<CR>
+autocmd FileType html nmap <C-t> zfitj
 
 " plugin settings
-let g:ctrlp_match_window = 'order:ttb,max:20'
 let g:NERDSpaceDelims=1
 let g:gitgutter_enabled = 0
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_modified_removed = '$'
+
+" jslint & csslint
+autocmd FileType javascript,css set makeprg=lints\ %
+autocmd FileType javascript,css set errorformat=%f(%l):\ %m
+autocmd FileType javascript,css imap <F9> <C-o>:make<CR>
+autocmd FileType javascript,css nmap <F9> :make<CR>
+autocmd FileType javascript vmap <F9> :w !jslint -stdin<CR>
+autocmd FileType javascript,css,json vmap <F10> :!all-beautify %<CR>
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
@@ -80,22 +104,8 @@ if executable('ag')
 
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-" fdoc is yaml
-autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
-" md is markdown
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-" extra rails.vim help
-autocmd User Rails silent! Rnavcommand decorator      app/decorators            -glob=**/* -suffix=_decorator.rb
-autocmd User Rails silent! Rnavcommand observer       app/observers             -glob=**/* -suffix=_observer.rb
-autocmd User Rails silent! Rnavcommand feature        features                  -glob=**/* -suffix=.feature
-autocmd User Rails silent! Rnavcommand job            app/jobs                  -glob=**/* -suffix=_job.rb
-autocmd User Rails silent! Rnavcommand mediator       app/mediators             -glob=**/* -suffix=_mediator.rb
-autocmd User Rails silent! Rnavcommand stepdefinition features/step_definitions -glob=**/* -suffix=_steps.rb
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
 

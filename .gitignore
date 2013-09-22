@@ -1,1 +1,5 @@
 vim/.netrwhist
+*.swp
+*.pyc
+
+.DS_Store
