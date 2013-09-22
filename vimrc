@@ -55,7 +55,7 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-nmap <leader>a :Ack<space>
+nmap <leader>c :Ack<space>
 nmap <leader>d :NERDTreeToggle<CR>
 nmap <leader>l :NERDTreeFind<CR>
 nmap <leader>t :TagbarToggle<CR>
