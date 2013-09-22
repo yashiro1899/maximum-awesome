@@ -5,13 +5,18 @@ GIT="/usr/local/bin/git"
 VIM="/usr/local/bin/vim"
 
 if [ $# -gt 1 ]; then
-    FILES=$@
+    FILES=""
+    until [ -z "$1" ]; do
+        FILES="$FILES
+$1"
+        shift
+    done
 elif [ $# -gt 0 ]; then
     FILES=$($GIT show $1 --name-only --oneline)
     if [ 0 -ne $? ]; then exit 1; fi
     cd "$($GIT rev-parse --show-toplevel)"
 else
-    FILES=$($GIT st -s | cut -c "3-")
+    FILES=$($GIT status -s)
     if [ 0 -ne $? ]; then exit 1; fi
 fi
 
@@ -23,9 +28,13 @@ is_binary() {
 }
 
 list=""
+IFS=$'\n'
 for i in $FILES; do
-    if [ ! -s $i ]; then continue; fi
-    is_binary $i && continue
+    if [ ! -s "$i" ]; then
+        i="${i:3}";
+        if [ ! -s "$i" ]; then continue; fi
+    fi
+    is_binary "$i" && continue
     list="$list\n$i"
 done
 list=$(echo -e $list | sort | uniq)
