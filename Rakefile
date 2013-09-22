@@ -159,7 +159,6 @@ task :default do
   Rake::Task['install:ctags'].invoke
 #   Rake::Task['install:reattach_to_user_namespace'].invoke
   Rake::Task['install:tmux'].invoke
-  Rake::Task['install:git_completion'].invoke
 #   Rake::Task['install:macvim'].invoke
 
   # TODO install gem ctags?
@@ -177,6 +176,11 @@ task :default do
   unless File.exist?(File.expand_path('~/.vimrc.bundles.local'))
     cp File.expand_path('vimrc.bundles.local'), File.expand_path('~/.vimrc.bundles.local'), :verbose => true
   end
+  unless File.exists?(File.expand_path('~/.bin'))
+    FileUtils.mkdir_p(File.expand_path('~/.bin'))
+  end
+  Rake::Task['install:git_completion'].invoke
+  cp_r Dir.glob('bin/*'), File.expand_path('~/.bin'), :verbose => true
 
   # Install Vundle and bundles
   Rake::Task['install:vundle'].invoke
