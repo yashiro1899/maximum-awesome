@@ -12,7 +12,6 @@ chdir "$HOME/Documents/workspace/"
 screen -t ice
 
 # 1
-chdir "$HOME/Documents/workspace/"
 screen -t ice/s
 
 # 2
