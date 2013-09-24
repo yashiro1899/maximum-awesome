@@ -45,6 +45,7 @@ set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
 set wildmenu                                                 " show a navigable menu for tab completion
 
 " Enable basic mouse behavior such as resizing buffers.
+" OSX needs https://bitheap.org/mouseterm/
 set mouse=a
 " if exists('$TMUX')  " Support resizing in tmux
   set ttymouse=xterm2
