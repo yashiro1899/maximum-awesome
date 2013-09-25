@@ -1,5 +1,5 @@
 term "xterm-256color"
-escape ^Yy
+escape ^Jj
 
 defscrollback 30000
 startup_message off
@@ -23,4 +23,5 @@ screen -t ec2 ssh ec2-user@icewhite.us -D 7070
 
 # 4
 screen -t dev bash -c "$HOME/.bin/dev"
+select 0
 
