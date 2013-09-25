@@ -52,17 +52,18 @@ set mouse=a
 
 " keyboard shortcuts
 let mapleader = ','
+map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 nmap <leader>c :Ack<space>
 nmap <leader>d :NERDTreeToggle<CR>
+nmap <leader>g :GitGutterToggle<CR>
+nmap <leader>h <Plug>DashSearch
 nmap <leader>l :NERDTreeFind<CR>
 nmap <leader>t :TagbarToggle<CR>
 nmap <leader><space> :call whitespace#strip_trailing()<CR>
-nmap <leader>g :GitGutterToggle<CR>
-map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 nmap <C-n> :tabnext<CR>
 nmap <C-p> :tabprevious<CR>
 imap <C-f> <Right>
