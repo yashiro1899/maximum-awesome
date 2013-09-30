@@ -20,9 +20,9 @@ chdir "$HOME"
 screen -t home
 
 # 3
-screen -t ec2 ssh ec2-user@icewhite.us -D 7070
+# screen -t ec2 ssh ec2-user@icewhite.us -D 7070
 
 # 4
-screen -t dev bash -c "$HOME/.bin/dev"
+# screen -t dev bash -c "$HOME/.bin/dev"
 select 0
 
