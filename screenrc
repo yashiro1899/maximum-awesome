@@ -17,12 +17,12 @@ screen -t ice/s
 
 # 2
 chdir "$HOME"
-screen -t home
+screen -t logs
 
 # 3
-# screen -t ec2 ssh ec2-user@icewhite.us -D 7070
+screen -t dev
 
 # 4
-# screen -t dev bash -c "$HOME/.bin/dev"
-select 0
+screen -t home
+# select 0
 
