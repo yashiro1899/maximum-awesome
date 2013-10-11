@@ -163,9 +163,9 @@ task :default do
   Rake::Task['install:brew'].invoke
   Rake::Task['install:brew_cask'].invoke
   Rake::Task['install:the_silver_searcher'].invoke
-  Rake::Task['install:iterm'].invoke
+# Rake::Task['install:iterm'].invoke
   Rake::Task['install:ctags'].invoke
-#   Rake::Task['install:reattach_to_user_namespace'].invoke
+# Rake::Task['install:reattach_to_user_namespace'].invoke
   Rake::Task['install:tmux'].invoke
 #   Rake::Task['install:macvim'].invoke
 
@@ -193,22 +193,22 @@ task :default do
   # Install Vundle and bundles
   Rake::Task['install:vundle'].invoke
 
-  step 'iterm2 colorschemes'
-  colorschemes = `defaults read com.googlecode.iterm2 'Custom Color Presets'`
-  dark  = colorschemes !~ /Solarized Dark/
-  light = colorschemes !~ /Solarized Light/
-  sh('open', '-a', '/Applications/iTerm.app', File.expand_path('iterm2-colors-solarized/Solarized Dark.itermcolors')) if dark
-  sh('open', '-a', '/Applications/iTerm.app', File.expand_path('iterm2-colors-solarized/Solarized Light.itermcolors')) if light
+  # step 'iterm2 colorschemes'
+  # colorschemes = `defaults read com.googlecode.iterm2 'Custom Color Presets'`
+  # dark  = colorschemes !~ /Solarized Dark/
+  # light = colorschemes !~ /Solarized Light/
+  # sh('open', '-a', '/Applications/iTerm.app', File.expand_path('iterm2-colors-solarized/Solarized Dark.itermcolors')) if dark
+  # sh('open', '-a', '/Applications/iTerm.app', File.expand_path('iterm2-colors-solarized/Solarized Light.itermcolors')) if light
 
-  step 'iterm2 profiles'
-  puts
-  puts "  Your turn!"
-  puts
-  puts "  Go and manually set up Solarized Light and Dark profiles in iTerm2."
-  puts "  (You can do this in 'Preferences' -> 'Profiles' by adding a new profile,"
-  puts "  then clicking the 'Colors' tab, 'Load Presets...' and choosing a Solarized option.)"
-  puts "  Also be sure to set Terminal Type to 'xterm-256color' in the 'Terminal' tab."
-  puts
-  puts "  Enjoy!"
-  puts
+  # step 'iterm2 profiles'
+  # puts
+  # puts "  Your turn!"
+  # puts
+  # puts "  Go and manually set up Solarized Light and Dark profiles in iTerm2."
+  # puts "  (You can do this in 'Preferences' -> 'Profiles' by adding a new profile,"
+  # puts "  then clicking the 'Colors' tab, 'Load Presets...' and choosing a Solarized option.)"
+  # puts "  Also be sure to set Terminal Type to 'xterm-256color' in the 'Terminal' tab."
+  # puts
+  # puts "  Enjoy!"
+  # puts
 end
