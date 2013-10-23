@@ -82,7 +82,6 @@ imap <C-c> <ESC>vT<yf/pF<i
 " folding
 map <silent> <leader>f :set foldmethod=indent<CR>zM<CR>
 map <silent> <leader>F :set foldmethod=manual<CR>zR<CR>
-autocmd FileType html nmap <C-t> zfitj
 
 " plugin settings
 let g:NERDSpaceDelims=1
