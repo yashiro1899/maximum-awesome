@@ -5,7 +5,7 @@ defscrollback 30000
 startup_message off
 vbell off
 
-hardstatus alwayslastline "%{bk}%-w%{gk}[%n %t]%{bk}%+w %=%{mk}%?[%h] %?%{wk}%c, %Y-%m-%d"
+hardstatus alwayslastline "%{bk}%-w%{gk}[%n %t]%{bk}%+w %=%{mk}%?[%h] %?%{wk}%c:%s, %Y-%m-%d"
 
 
 # 0
