@@ -16,7 +16,7 @@ elif [ $# -gt 0 ]; then
     if [ 0 -ne $? ]; then exit 1; fi
     cd "$($GIT rev-parse --show-toplevel)"
 else
-    FILES=$($GIT status -s)
+    FILES=$($GIT status -s -uno)
     if [ 0 -ne $? ]; then exit 1; fi
 fi
 
