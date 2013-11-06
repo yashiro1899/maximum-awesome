@@ -15,3 +15,4 @@ fi
 alias cask="brew cask"
 alias ls='ls -G'
 alias vi="/usr/local/bin/vim"
+alias ag="ag --pager 'less -r'"
