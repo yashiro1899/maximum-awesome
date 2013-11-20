@@ -21,6 +21,7 @@ process.stdin.on('data', function(chunk) {
         break;
     case "html":
     case "tpl":
+    case "phtml":
         beauty = html.prettyPrint;
         break;
     default:
