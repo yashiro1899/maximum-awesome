@@ -97,7 +97,7 @@ autocmd FileType javascript,css set errorformat=%f(%l):\ %m
 autocmd FileType javascript,css imap <F9> <C-o>:make<CR>
 autocmd FileType javascript,css nmap <F9> :make<CR>
 autocmd FileType javascript vmap <F9> :w !jslint -stdin<CR>
-autocmd FileType javascript,json,css,html,tpl vmap <F10> :!all-beautify %<CR>
+autocmd FileType javascript,json,css,html,php vmap <F10> :!all-beautify %<CR>
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
