@@ -3,10 +3,17 @@
 set user [lindex $argv 0]
 set host [lindex $argv 1]
 set password [lindex $argv 2]
-set timeout -1
 
 spawn ssh $user@$host
-expect "*password:*"
-send "$password\r"
+for {} {1} {} {
+    expect "Are you sure you want to continue connecting (yes/no)?" {
+        send "yes\r"
+    } "*password:*" {
+        send "$password\r"
+        break
+    } "*Could not resolve hostname*" {
+        exit
+    }
+}
 interact
 
