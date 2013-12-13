@@ -12,7 +12,8 @@ if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
     . $(brew --prefix)/share/bash-completion/bash_completion
 fi
 
+alias ag="ag --pager 'less -r'"
 alias cask="brew cask"
 alias ls='ls -G'
+alias rm='rm -i'
 alias vi="/usr/local/bin/vim"
-alias ag="ag --pager 'less -r'"
