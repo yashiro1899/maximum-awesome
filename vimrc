@@ -83,6 +83,9 @@ imap <C-c> <ESC>vT<yf/pF<i
 map <silent> <leader>f :set foldmethod=indent<CR>zM<CR>
 map <silent> <leader>F :set foldmethod=manual<CR>zR<CR>
 
+" in case you forgot to sudo
+cmap w!! %!sudo tee > /dev/null %
+
 " plugin settings
 let g:NERDSpaceDelims=1
 let g:gitgutter_enabled = 0
