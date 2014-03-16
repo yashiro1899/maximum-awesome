@@ -4,7 +4,7 @@
 FILE=$@
 SUFFIX=${FILE##*.}
 JSLINT="$HOME/.bin/jslint"
-CSSLINT="/usr/local/share/npm/bin/csslint"
+CSSLINT="/usr/local/bin/csslint"
 CSSLINT_PARAM="--format=compact \
 --errors=\
 errors,\
