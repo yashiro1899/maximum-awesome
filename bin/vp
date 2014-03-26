@@ -2,7 +2,7 @@
 
 
 GIT=$(which git)
-VIM=$(which vim)
+VIM=$(which vimx)
 
 if [ $# -gt 1 ]; then
     FILES=""

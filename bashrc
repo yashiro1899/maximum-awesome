@@ -14,3 +14,7 @@ fi
 
 alias rm='rm -i'
 alias vi="/usr/bin/vim"
+if [ -e /usr/bin/vimx ]; then
+    alias vi="/usr/bin/vimx"
+    alias vim="/usr/bin/vimx"
+fi
