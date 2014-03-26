@@ -13,8 +13,11 @@ if [ -f /usr/share/bash-completion/bash_completion ]; then
 fi
 
 alias rm='rm -i'
-alias vi="/usr/bin/vim"
 if [ -e /usr/bin/vimx ]; then
     alias vi="/usr/bin/vimx"
     alias vim="/usr/bin/vimx"
+fi
+if [ -e /usr/bin/xsel ]; then
+    alias pbcopy='/usr/bin/xsel --clipboard --input'
+    alias pbpaste='/usr/bin/xsel --clipboard --output'
 fi
