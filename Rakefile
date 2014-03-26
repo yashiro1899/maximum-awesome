@@ -202,34 +202,25 @@ COPIED_FILES = filemap(
 
 LINKED_FILES = filemap(
   'vim'           => '~/.vim',
-  'tmux.conf'     => '~/.tmux.conf',
   'vimrc'         => '~/.vimrc',
   'vimrc.bundles' => '~/.vimrc.bundles'
+  'screenrc'      => '~/.screenrc',
+  'bashrc'        => '~/.bashrc'
 )
 
 desc 'Install these config files.'
 task :install do
   Rake::Task['install:brew'].invoke
-# Rake::Task['install:brew_cask'].invoke
   Rake::Task['install:the_silver_searcher'].invoke
-# Rake::Task['install:iterm'].invoke
   Rake::Task['install:ctags'].invoke
-# Rake::Task['install:reattach_to_user_namespace'].invoke
-# Rake::Task['install:tmux'].invoke
-# Rake::Task['install:macvim'].invoke
 
   # TODO install gem ctags?
   # TODO run gem ctags?
 
   step 'symlink'
-  link_file 'vim'                   , '~/.vim'
-# link_file 'tmux.conf'             , '~/.tmux.conf'
-  link_file 'vimrc'                 , '~/.vimrc'
-  link_file 'vimrc.bundles'         , '~/.vimrc.bundles'
-  link_file 'screenrc'              , '~/.screenrc'
-  link_file 'bashrc'                , '~/.bashrc'
-  unless File.exist?(File.expand_path('~/.vimrc.local'))
-    cp File.expand_path('vimrc.local'), File.expand_path('~/.vimrc.local'), :verbose => true
+
+  LINKED_FILES.each do |orig, link|
+    link_file orig, link
   end
 
   COPIED_FILES.each do |orig, copy|
@@ -243,24 +234,6 @@ task :install do
   # Install Vundle and bundles
   Rake::Task['install:vundle'].invoke
 
-  # step 'iterm2 colorschemes'
-  # colorschemes = `defaults read com.googlecode.iterm2 'Custom Color Presets'`
-  # dark  = colorschemes !~ /Solarized Dark/
-  # light = colorschemes !~ /Solarized Light/
-  # sh('open', '-a', '/Applications/iTerm.app', File.expand_path('iterm2-colors-solarized/Solarized Dark.itermcolors')) if dark
-  # sh('open', '-a', '/Applications/iTerm.app', File.expand_path('iterm2-colors-solarized/Solarized Light.itermcolors')) if light
-
-  # step 'iterm2 profiles'
-  # puts
-  # puts "  Your turn!"
-  # puts
-  # puts "  Go and manually set up Solarized Light and Dark profiles in iTerm2."
-  # puts "  (You can do this in 'Preferences' -> 'Profiles' by adding a new profile,"
-  # puts "  then clicking the 'Colors' tab, 'Load Presets...' and choosing a Solarized option.)"
-  # puts "  Also be sure to set Terminal Type to 'xterm-256color' in the 'Terminal' tab."
-  # puts
-  # puts "  Enjoy!"
-  # puts
 end
 
 desc 'Uninstall these config files.'
