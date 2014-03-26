@@ -46,9 +46,9 @@ set wildmenu                                                 " show a navigable 
 " Enable basic mouse behavior such as resizing buffers.
 " OSX needs https://bitheap.org/mouseterm/
 set mouse=a
-" if exists('$TMUX')  " Support resizing in tmux
+if exists('$TMUX')  " Support resizing in tmux
   set ttymouse=xterm2
-" endif
+endif
 
 " keyboard shortcuts
 let mapleader = ','

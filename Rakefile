@@ -203,8 +203,8 @@ COPIED_FILES = filemap(
 LINKED_FILES = filemap(
   'vim'           => '~/.vim',
   'vimrc'         => '~/.vimrc',
-  'vimrc.bundles' => '~/.vimrc.bundles'
-  'screenrc'      => '~/.screenrc'
+  'vimrc.bundles' => '~/.vimrc.bundles',
+  'screenrc'      => '~/.screenrc',
   'bashrc'        => '~/.bashrc'
 )
 

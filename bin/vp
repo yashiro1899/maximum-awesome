@@ -1,8 +1,8 @@
 #!/bin/bash
 
 
-GIT="/usr/local/bin/git"
-VIM="/usr/local/bin/vim"
+GIT=$(which git)
+VIM=$(which vim)
 
 if [ $# -gt 1 ]; then
     FILES=""

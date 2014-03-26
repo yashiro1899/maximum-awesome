@@ -8,11 +8,9 @@ function proml() {
 }
 proml
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
 fi
 
-alias ag="ag --pager 'less -r'"
-alias ls='ls -G'
 alias rm='rm -i'
-alias vi="/usr/local/bin/vim"
+alias vi="/usr/bin/vim"

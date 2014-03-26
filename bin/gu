@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-GIT="/usr/local/bin/git"
+GIT=$(which git)
 if [ $# -gt 0 ]; then
     MSG=$@', at'$(date '+%n%c')
 else
