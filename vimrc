@@ -75,6 +75,7 @@ imap <C-e> <End>
 imap <C-d> <Delete>
 vmap <lt> <lt>gv
 vmap > >gv
+vmap <leader>y "+y
 " html tag closer
 imap <C-t> <lt>><lt>/><ESC>3hi
 imap <C-c> <ESC>vT<yf/pF<i
