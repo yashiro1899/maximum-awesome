@@ -16,13 +16,16 @@ screen -t ice
 screen -t ice/s
 
 # 2
-chdir "$HOME"
 screen -t logs
 
 # 3
+chdir "$HOME"
 screen -t dev
 
 # 4
 screen -t home
-# select 0
 
+# 5
+chdir "$HOME/Desktop/singapore/"
+screen -t singapore
+# select 0
