@@ -60,7 +60,7 @@ map <C-l> <C-w>l
 nmap <leader>c :Ack<space>
 nmap <leader>d :NERDTreeToggle<CR>
 nmap <leader>g :GitGutterToggle<CR>
-nmap <leader>h <Plug>DashSearch
+nmap <leader>h :!zeal --query "<cword>"&<CR><CR>
 nmap <leader>l :NERDTreeFind<CR>
 nmap <leader>t :TagbarToggle<CR>
 nmap <leader><space> :call whitespace#strip_trailing()<CR>
