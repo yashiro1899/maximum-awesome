@@ -26,6 +26,5 @@ screen -t dev
 screen -t home
 
 # 5
-chdir "$HOME/Desktop/singapore/"
 screen -t singapore
 # select 0
