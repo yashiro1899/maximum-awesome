@@ -12,6 +12,7 @@ if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
 fi
 
+export NODE_PATH="/usr/lib/node_modules"
 alias rm='rm -i'
 if [ -e /usr/bin/vimx ]; then
     alias vi="/usr/bin/vimx"
