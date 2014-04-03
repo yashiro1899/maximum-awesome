@@ -14,6 +14,7 @@ fi
 
 export NODE_PATH="/usr/lib/node_modules"
 alias rm='rm -i'
+alias ls='ls --color'
 if [ -e /usr/bin/vimx ]; then
     alias vi="/usr/bin/vimx"
     alias vim="/usr/bin/vimx"
