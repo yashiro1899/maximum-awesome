@@ -105,8 +105,6 @@ autocmd FileType javascript,json,css,html,xhtml,php vmap <F10> :!all-beautify %<
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
-  let g:ackprg = 'ag --nogroup --column'
-
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
 endif
