@@ -96,10 +96,10 @@ let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_modified_removed = '$'
 
 " jslint & csslint
-autocmd FileType javascript,css set makeprg=lints\ %
-autocmd FileType javascript,css set errorformat=%f(%l):\ %m
-autocmd FileType javascript,css imap <F9> <C-o>:make<CR>
-autocmd FileType javascript,css nmap <F9> :make<CR>
+autocmd FileType javascript,json,css set makeprg=lints\ %
+autocmd FileType javascript,json,css set errorformat=%f(%l):\ %m
+autocmd FileType javascript,json,css imap <F9> <C-o>:make<CR>
+autocmd FileType javascript,json,css nmap <F9> :make<CR>
 autocmd FileType javascript vmap <F9> :w !$HOME/bin/jslint -stdin<CR>
 autocmd FileType javascript,json,css,html,xhtml,php vmap <F10> :!all-beautify %<CR>
 

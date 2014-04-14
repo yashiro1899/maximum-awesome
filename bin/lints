@@ -4,6 +4,7 @@
 FILE=$@
 SUFFIX=${FILE##*.}
 JSLINT="$HOME/bin/jslint"
+JSONLINT="/usr/bin/jsonlint -c -q "
 CSSLINT=$(which csslint)
 CSSLINT_PARAM="--format=compact \
 --errors=\
@@ -33,9 +34,11 @@ zero-units \
 PATTERN="s/: line ([[:digit:]]+), col [[:digit:]]+,/(\1):/"
 
 case "$SUFFIX" in
-js|JS|json|JSON|jsx|JSX)
+js|JS|jsx|JSX)
     $JSLINT $FILE;;
 css|CSS)
     $CSSLINT $CSSLINT_PARAM $FILE | grep -v "^$" | sed -E "$PATTERN";;
+json|JSON)
+    $JSONLINT $FILE 2>&1 | grep -v "^$" | sed -E "$PATTERN";;
 esac
 
