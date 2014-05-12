@@ -103,6 +103,8 @@ autocmd FileType javascript,json,css nmap <F9> :make<CR>
 autocmd FileType javascript vmap <F9> :w !$HOME/bin/jslint -stdin<CR>
 autocmd FileType javascript,json,css,html,xhtml,php vmap <F10> :!all-beautify %<CR>
 
+autocmd BufRead,BufNewFile *.vm set filetype=velocity
+
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
