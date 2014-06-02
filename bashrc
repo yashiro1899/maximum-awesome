@@ -16,3 +16,4 @@ alias ag="ag --pager 'less -r'"
 alias ls='ls -G'
 alias rm='rm -i'
 alias vi="/usr/local/bin/vim"
+export NODE_PATH="/usr/local/lib/node_modules/"
