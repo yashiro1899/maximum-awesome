@@ -10,6 +10,7 @@ inoremap jj <ESC>
 " gui settings
 if (&t_Co == 256 || has('gui_running'))
 "   if ($TERM_PROGRAM == 'iTerm.app')
+    let g:solarized_termtrans=1        " for OSX terminal
     set background=dark
     colorscheme solarized
   else
