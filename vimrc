@@ -46,42 +46,34 @@ set wildmenu                                                 " show a navigable 
 " Enable basic mouse behavior such as resizing buffers.
 " OSX needs https://bitheap.org/mouseterm/
 set mouse=a
-" if exists('$TMUX')  " Support resizing in tmux
-  set ttymouse=xterm2
-" endif
 
 " keyboard shortcuts
 let mapleader = ','
-map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-nmap <leader>c :Ack<space>
-nmap <leader>d :NERDTreeToggle<CR>
-nmap <leader>g :GitGutterToggle<CR>
-nmap <leader>h <Plug>DashSearch
-nmap <leader>l :NERDTreeFind<CR>
-nmap <leader>t :TagbarToggle<CR>
-nmap <leader><space> :call whitespace#strip_trailing()<CR>
-nmap <C-n> :tabnext<CR>
-nmap <C-p> :tabprevious<CR>
-imap <C-f> <Right>
-imap <C-b> <Left>
-imap <C-n> <Down>
-imap <C-p> <Up>
-imap <C-a> <Home>
-imap <C-e> <End>
-imap <C-d> <Delete>
-vmap <lt> <lt>gv
-vmap > >gv
-" html tag closer
-imap <C-t> <lt>><lt>/><ESC>3hi
-imap <C-c> <ESC>vT<yf/pF<i
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+nnoremap <leader>c :Ack<space>
+nnoremap <leader>d :NERDTreeToggle<CR>
+nnoremap <leader>g :GitGutterToggle<CR>
+nnoremap <leader>l :NERDTreeFind<CR>
+nnoremap <leader>t :TagbarToggle<CR>
+nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
+noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+nnoremap <C-n> :tabnext<CR>
+nnoremap <C-p> :tabprevious<CR>
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-d> <Delete>
+vnoremap <lt> <lt>gv
 
 " folding
-map <silent> <leader>f :set foldmethod=indent<CR>zM<CR>
-map <silent> <leader>F :set foldmethod=manual<CR>zR<CR>
+noremap <silent> <leader>f :set foldmethod=indent<CR>zM<CR>
+noremap <silent> <leader>F :set foldmethod=manual<CR>zR<CR>
 
 " in case you forgot to sudo
 cnoremap w!! %!sudo tee > /dev/null %
@@ -94,48 +86,14 @@ let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_modified_removed = '$'
 
-" jslint & csslint
-autocmd FileType javascript,css set makeprg=lints\ %
-autocmd FileType javascript,css set errorformat=%f(%l):\ %m
-autocmd FileType javascript,css imap <F9> <C-o>:make<CR>
-autocmd FileType javascript,css nmap <F9> :make<CR>
-autocmd FileType javascript vmap <F9> :w !$HOME/.bin/jslint -stdin<CR>
-autocmd FileType javascript,json,css,html,xhtml,php vmap <F10> :!all-beautify %<CR>
-
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-" fdoc is yaml
-autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
-" md is markdown
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile *.md set spell
-" extra rails.vim help
-autocmd User Rails silent! Rnavcommand decorator      app/decorators            -glob=**/* -suffix=_decorator.rb
-autocmd User Rails silent! Rnavcommand observer       app/observers             -glob=**/* -suffix=_observer.rb
-autocmd User Rails silent! Rnavcommand feature        features                  -glob=**/* -suffix=.feature
-autocmd User Rails silent! Rnavcommand job            app/jobs                  -glob=**/* -suffix=_job.rb
-autocmd User Rails silent! Rnavcommand mediator       app/mediators             -glob=**/* -suffix=_mediator.rb
-autocmd User Rails silent! Rnavcommand stepdefinition features/step_definitions -glob=**/* -suffix=_steps.rb
-
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
-
-" Fix Cursor in TMUX
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
-let g:dash_map = {
-\ 'javascript' : 'js'
-\ }
 
 " Go crazy!
 if filereadable(expand("~/.vimrc.local"))
