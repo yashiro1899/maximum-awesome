@@ -1,5 +1,4 @@
 #!/bin/bash
-
 function shorten() {
     c=1
     f=$(echo $1 | cut -c $c"-")
@@ -16,7 +15,7 @@ function shorten() {
     return 1
 }
 
-JSL="/usr/local/bin/jsl"
+JSL=$(which jsl)
 PARAM="-conf $HOME/.bin/jsl.conf -nologo -nofilelisting -nosummary -nocontext"
 if [ $1 = '-stdin' ]; then
     $JSL $PARAM $1
@@ -41,4 +40,3 @@ else
         echo $short$other
     done
 fi
-

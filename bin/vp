@@ -1,6 +1,4 @@
 #!/bin/bash
-
-
 GIT="/usr/local/bin/git"
 VIM="/usr/local/bin/vim"
 
@@ -40,4 +38,3 @@ done
 list=$(echo -e $list | sort | uniq)
 
 $VIM -p $list
-

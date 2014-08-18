@@ -1,6 +1,4 @@
 #!/bin/bash
-
-
 GIT="/usr/local/bin/git"
 if [ $# -gt 0 ]; then
     MSG=$@', at'$(date '+%n%c')
@@ -15,4 +13,3 @@ else
 fi
 
 $GIT commit -am "$MSG"
-
