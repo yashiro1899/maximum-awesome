@@ -57,7 +57,6 @@ map <C-l> <C-w>l
 nmap <leader>c :Ack<space>
 nmap <leader>d :NERDTreeToggle<CR>
 nmap <leader>g :GitGutterToggle<CR>
-nmap <leader>h :!zeal --query "<cword>"&<CR><CR>
 nmap <leader>l :NERDTreeFind<CR>
 nmap <leader>t :TagbarToggle<CR>
 nmap <leader><space> :call whitespace#strip_trailing()<CR>
@@ -71,11 +70,6 @@ imap <C-a> <Home>
 imap <C-e> <End>
 imap <C-d> <Delete>
 vmap <lt> <lt>gv
-vmap > >gv
-vmap <leader>y "+y
-" html tag closer
-imap <C-t> <lt>><lt>/><ESC>3hi
-imap <C-c> <ESC>vT<yf/pF<i
 
 " folding
 map <silent> <leader>f :set foldmethod=indent<CR>zM<CR>
@@ -92,34 +86,14 @@ let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_modified_removed = '$'
 
-" jslint & csslint
-autocmd FileType javascript,json,css set makeprg=lints\ %
-autocmd FileType javascript,json,css set errorformat=%f(%l):\ %m
-autocmd FileType javascript,json,css imap <F9> <C-o>:make<CR>
-autocmd FileType javascript,json,css nmap <F9> :make<CR>
-autocmd FileType javascript vmap <F9> :w !$HOME/bin/jslint -stdin<CR>
-autocmd FileType javascript,json,css,html,xhtml,php vmap <F10> :!all-beautify %<CR>
-
-autocmd BufRead,BufNewFile *.vm set filetype=velocity
-
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-" fdoc is yaml
-autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
-" md is markdown
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile *.md set spell
-
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
-
-let g:dash_map = {
-\ 'javascript' : 'js'
-\ }
 
 " Go crazy!
 if filereadable(expand("~/.vimrc.local"))
