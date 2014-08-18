@@ -5,6 +5,7 @@ JSLINT="$HOME/bin/jslint"
 JSONLINT="/usr/bin/jsonlint -c -q "
 CSSLINT=$(which csslint)
 CSSLINT_PARAM="--format=compact \
+--quiet \
 --errors=\
 errors,\
 display-property-grouping,\
