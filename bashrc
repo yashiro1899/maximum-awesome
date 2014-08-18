@@ -1,3 +1,6 @@
+PATH=$PATH:$HOME/.bin
+export PATH
+
 export NODE_PATH="/usr/local/lib/node_modules/"
 alias ag="ag --pager 'less -r'"
 alias ls='ls -G'
