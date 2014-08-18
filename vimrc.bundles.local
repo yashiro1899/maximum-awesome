@@ -1,0 +1,4 @@
+Bundle 'juvenn/mustache.vim'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'pangloss/vim-javascript'
+Bundle 'vim-scripts/nginx.vim'
