@@ -1,6 +1,4 @@
 #!/bin/bash
-
-
 FILE=$@
 SUFFIX=${FILE##*.}
 JSLINT="$HOME/bin/jslint"

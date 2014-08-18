@@ -1,5 +1,4 @@
 #!/bin/bash
-
 function shorten() {
     c=1
     f=$(echo $1 | cut -c $c"-")
@@ -41,4 +40,3 @@ else
         echo $short$other
     done
 fi
-
