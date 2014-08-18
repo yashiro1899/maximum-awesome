@@ -41,4 +41,3 @@ css|CSS)
 json|JSON)
     $JSONLINT $FILE 2>&1 | grep -v "^$" | sed -E "$PATTERN";;
 esac
-
