@@ -1,7 +1,7 @@
 set nocursorline " don't highlight current line
 
 " keyboard shortcuts
-inoremap jj <ESC>
+" inoremap jj <ESC>
 
 " highlight search
 "set hlsearch
@@ -9,13 +9,11 @@ inoremap jj <ESC>
 
 " gui settings
 if (&t_Co == 256 || has('gui_running'))
-"   if ($TERM_PROGRAM == 'iTerm.app')
-    let g:solarized_termtrans=1        " for OSX terminal
-    set background=dark
-    colorscheme solarized
-  else
-    colorscheme desert
-"   endif
+  let g:solarized_termtrans=1        " for OSX terminal
+  set background=dark
+  colorscheme solarized
+else
+  colorscheme desert
 endif
 
 " Disambiguate ,a & ,t from the Align plugin, making them fast again.
@@ -33,3 +31,16 @@ function! s:RemoveConflictingAlignMaps()
 endfunction
 command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
 silent! autocmd VimEnter * RemoveConflictingAlignMaps
+
+" html tag closer
+inoremap <C-t> <lt>><lt>/><ESC>3hi
+inoremap <C-c> <ESC>vT<yf/pF<i
+
+" jslint & csslint
+autocmd FileType javascript set makeprg=$HOME/bin/jslint\ %
+autocmd FileType javascript set errorformat=%f(%l):\ %m
+autocmd FileType javascript inoremap <F9> <C-o>:make<CR>
+autocmd FileType javascript nnoremap <F9> :make<CR>
+autocmd FileType javascript vnoremap <F9> :w !$HOME/bin/jslint -stdin<CR>
+autocmd FileType javascript,css vnoremap <F10> :!beautifiers %<CR>
+autocmd FileType javascript,css nnoremap <F10> ggVG:!beautifiers %<CR>
