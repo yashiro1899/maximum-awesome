@@ -1,5 +1,5 @@
 #!/bin/bash
-HOSTSPATH="$HOME/Desktop/singapore/hosts/"
+HOSTSPATH="$HOME/.hosts/"
 if [ -z $1 ]; then
     for h in $(ls $HOSTSPATH); do
         cmp /etc/hosts $HOSTSPATH$h &> /dev/null
