@@ -53,7 +53,7 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-nnoremap <leader>c :Ack<space>
+nnoremap <leader>c :Ag<space>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
 nnoremap <leader>l :NERDTreeFind<CR>
