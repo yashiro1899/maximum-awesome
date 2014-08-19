@@ -46,7 +46,4 @@ autocmd FileType javascript,css vnoremap <F10> :!beautifiers %<CR>
 autocmd FileType javascript,css nnoremap <F10> ggVG:!beautifiers %<CR>
 
 " dash
-nnoremap <leader>h <Plug>DashSearch
-let g:dash_map = {
-\ 'javascript' : 'js'
-\ }
+nmap <leader>h <Plug>DashSearch
