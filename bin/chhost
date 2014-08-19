@@ -1,0 +1,27 @@
+#!/bin/bash
+HOSTSPATH="$HOME/Desktop/singapore/hosts/"
+if [ -z $1 ]; then
+    for h in $(ls $HOSTSPATH); do
+        cmp /etc/hosts $HOSTSPATH$h &> /dev/null
+        if [ $? -eq 0 ]; then
+            echo 'current: [ '$h' ]'
+        fi
+    done
+    exit 0
+else
+    case $1 in
+    A|a)
+        sudo cp $HOSTSPATH"alpha" /etc/hosts
+        echo 'changed "/etc/hosts" to [ alpha ]';;
+    B|b)
+        sudo cp $HOSTSPATH"beta" /etc/hosts
+        echo 'changed "/etc/hosts" to [ beta ]';;
+    C|c)
+        sudo cp $HOSTSPATH"gamma" /etc/hosts
+        echo 'changed "/etc/hosts" to [ gamma ]';;
+    D|d)
+        sudo cp $HOSTSPATH"delta" /etc/hosts
+        echo 'changed "/etc/hosts" to [ delta ]';;
+    esac
+    cat /etc/hosts
+fi
