@@ -47,6 +47,7 @@ autocmd FileType javascript,css,html nnoremap <F10> ggVG:!beautifiers %<CR>
 
 " filetypes
 autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.md set spell
 
 " dash
 nmap <leader>h <Plug>DashSearch
