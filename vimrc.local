@@ -45,5 +45,8 @@ autocmd FileType javascript vnoremap <F9> :w !$HOME/.bin/jslint -stdin<CR>
 autocmd FileType javascript,css,html vnoremap <F10> :!beautifiers %<CR>
 autocmd FileType javascript,css,html nnoremap <F10> ggVG:!beautifiers %<CR>
 
+" filetypes
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+
 " dash
 nmap <leader>h <Plug>DashSearch
