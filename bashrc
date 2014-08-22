@@ -1,5 +1,6 @@
 PATH=$PATH:$HOME/.bin
 export PATH
+export PYTHONSTARTUP=$HOME/.pythonrc
 
 export NODE_PATH="/usr/local/lib/node_modules/"
 alias ag="ag --pager 'less -r'"
