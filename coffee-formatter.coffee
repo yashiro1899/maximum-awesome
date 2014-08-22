@@ -1,6 +1,6 @@
 # refer to https://github.com/derekchiang/Coffee-Formatter.git
 
-TWO_SPACE_OPERATORS = ['=', '+=', '-=', '==', '<=', '>=', '>', "<", '+', '-', '*', '/']
+TWO_SPACE_OPERATORS = ['+=', '-=', '==', '!=', '<=', '>=', '=', '>', "<", '+', '-', '*', '/']
 ONE_SPACE_OPERATORS = [':', '?', ')', '}', ',']
 
 inStringOrComment = (index, line) ->
