@@ -1,6 +1,6 @@
 # refer to https://github.com/derekchiang/Coffee-Formatter.git
 
-TWO_SPACE_OPERATORS = ['+=', '-=', '==', '!=', '<=', '>=', '=', '>', "<", '+', '-', '*', '/']
+TWO_SPACE_OPERATORS = ['+=', '-=', '==', '<=', '>=', '=', '>', "<", '+', '-', '*', '/']
 ONE_SPACE_OPERATORS = [':', '?', ')', '}', ',']
 
 inStringOrComment = (index, line) ->
@@ -78,9 +78,9 @@ formatOneSpaceOperator = (line) ->
             thisCharAndNextOne = line.substr(i, 2)
             if (line.substr(i).indexOf(operator) == 0) and
             (notInStringOrComment i, line) and
-            (line.substr(i).indexOf('::') != 0) and
-            (line.substr(i - 1).indexOf('::') != 0) and
-            (line.substr(i + 1).indexOf('?') != 0) and
+            (line.substr(i).indexOf('::') isnt 0) and
+            (line.substr(i - 1).indexOf('::') isnt 0) and
+            (line.substr(i + 1).indexOf('?') isnt 0) and
             (thisCharAndNextOne isnt "),") and
             (thisCharAndNextOne isnt ").") and
             (thisCharAndNextOne isnt ")[") and
