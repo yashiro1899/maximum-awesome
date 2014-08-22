@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var jsbeautifier = require("js-beautify");
+var coffeebeautifier = require("./coffee-formatter");
 
 var name = process.argv[2];
 var suffix = name.split(".");
