@@ -70,6 +70,7 @@ inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-d> <Delete>
 vnoremap <lt> <lt>gv
+vnoremap > >gv
 
 " folding
 noremap <silent> <leader>f :set foldmethod=indent<CR>zM<CR>
