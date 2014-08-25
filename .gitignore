@@ -3,4 +3,3 @@ vim/.netrwhist
 *.pyc
 
 .DS_Store
-bin/coffee-formatter.js

@@ -42,5 +42,5 @@ autocmd FileType javascript set errorformat=%f(%l):\ %m
 autocmd FileType javascript inoremap <F9> <C-o>:make<CR>
 autocmd FileType javascript nnoremap <F9> :make<CR>
 autocmd FileType javascript vnoremap <F9> :w !$HOME/bin/jslint -stdin<CR>
-autocmd FileType javascript,css,html,coffee vnoremap <F10> :!beautifiers %<CR>
-autocmd FileType javascript,css,html,coffee nnoremap <F10> ggVG:!beautifiers %<CR>
+autocmd FileType javascript,css,html vnoremap <F10> :!beautifiers %<CR>
+autocmd FileType javascript,css,html nnoremap <F10> ggVG:!beautifiers %<CR>
