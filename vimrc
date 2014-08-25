@@ -71,6 +71,7 @@ inoremap <C-e> <End>
 inoremap <C-d> <Delete>
 vnoremap <lt> <lt>gv
 vnoremap > >gv
+vnoremap <leader>y "+y
 
 " folding
 noremap <silent> <leader>f :set foldmethod=indent<CR>zM<CR>
