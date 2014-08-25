@@ -15,9 +15,6 @@ case "html":
 case "css":
     beautify = jsbeautifier.css;
     break;
-case "coffee":
-    beautify = require("./coffee-formatter");
-    break;
 case "js":
 case "json":
 default:
