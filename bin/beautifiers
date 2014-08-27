@@ -10,6 +10,7 @@ suffix = suffix[suffix.length - 1];
 suffix = suffix.toLowerCase();
 switch (suffix) {
 case "html":
+case "hjs":
     beautify = jsbeautifier.html;
     break;
 case "css":
