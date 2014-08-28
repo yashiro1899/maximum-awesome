@@ -51,3 +51,6 @@ autocmd BufRead,BufNewFile *.md set spell
 
 " dash
 nmap <leader>h <Plug>DashSearch
+let g:dash_map = {
+\ 'coffee' : 'javascript'
+\ }
