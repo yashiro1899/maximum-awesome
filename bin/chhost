@@ -1,27 +1,23 @@
 #!/bin/bash
-HOSTSPATH="$HOME/.hosts/"
-if [ -z $1 ]; then
-    for h in $(ls $HOSTSPATH); do
-        cmp /etc/hosts $HOSTSPATH$h &> /dev/null
-        if [ $? -eq 0 ]; then
-            echo 'current: [ '$h' ]'
-        fi
-    done
-    exit 0
-else
-    case $1 in
-    A|a)
-        sudo cp $HOSTSPATH"alpha" /etc/hosts
-        echo 'changed "/etc/hosts" to [ alpha ]';;
-    B|b)
-        sudo cp $HOSTSPATH"beta" /etc/hosts
-        echo 'changed "/etc/hosts" to [ beta ]';;
-    C|c)
-        sudo cp $HOSTSPATH"gamma" /etc/hosts
-        echo 'changed "/etc/hosts" to [ gamma ]';;
-    D|d)
-        sudo cp $HOSTSPATH"delta" /etc/hosts
-        echo 'changed "/etc/hosts" to [ delta ]';;
-    esac
-    cat /etc/hosts
-fi
+
+HOSTSFILE="/etc/hosts"
+if [ -d "$1" ]; then filespath="$1"; else filespath="$HOME/.hosts/"; fi
+files=$(ls $filespath)
+
+for h in $files; do
+    cmp /etc/hosts $filespath$h &> /dev/null
+    if [ $? -eq 0 ]; then
+        echo "Current: [ $h ]"
+        echo
+        break
+    fi
+done
+
+select h in $files; do
+    sudo cp $filespath$h /etc/hosts
+    echo -e "\n"
+    echo "Changed \"/etc/hosts\" to [ $h ]"
+    echo
+    cat $HOSTSFILE
+    break
+done
