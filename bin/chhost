@@ -1,23 +1,26 @@
 #!/bin/bash
 
 HOSTSFILE="/etc/hosts"
-if [ -d "$1" ]; then filespath="$1"; else filespath="$HOME/.hosts/"; fi
-files=$(ls $filespath)
+if [ -d "$1" ]; then filespath="$1"; else filespath="$HOME/.hosts"; fi
+files=$(find $filespath -type f -maxdepth 1)
 
 for h in $files; do
-    cmp /etc/hosts $filespath$h &> /dev/null
+    cmp $HOSTSFILE $h &> /dev/null
     if [ $? -eq 0 ]; then
-        echo "Current: [ $h ]"
+        current=${h##*/}
+        echo "Current: [ $current ]"
         echo
         break
     fi
 done
 
-select h in $files; do
-    sudo cp $filespath$h /etc/hosts
+select h in ${files//$filespath\//}; do
+    if [ $current == $h ]; then break; fi
+
+    sudo cp "$filespath/$h" $HOSTSFILE
     echo -e "\n"
-    echo "Changed \"/etc/hosts\" to [ $h ]"
+    echo "Changed \"$HOSTSFILE\" to [ ${h##*/} ]"
     echo
-    cat $HOSTSFILE
+    cat -n $HOSTSFILE
     break
 done
