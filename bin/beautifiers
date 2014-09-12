@@ -6,19 +6,19 @@ var suffix = process.argv[2];
 var beautify;
 
 switch (suffix) {
-case "html":
-    beautify = jsbeautifier.html;
-    break;
-case "css":
-    beautify = jsbeautifier.css;
-    break;
-case "javascript":
-case "json":
-    beautify = jsbeautifier.js;
-    break;
-default:
-    process.exit(0);
-    break;
+    case "html":
+        beautify = jsbeautifier.html;
+        break;
+    case "css":
+        beautify = jsbeautifier.css;
+        break;
+    case "javascript":
+    case "json":
+        beautify = jsbeautifier.js;
+        break;
+    default:
+        process.exit(0);
+        break;
 }
 
 process.stdin.resume();
