@@ -17,7 +17,9 @@ switch (suffix) {
         beautify = jsbeautifier.js;
         break;
     default:
-        process.exit(0);
+        beautify = function(result) {
+            return result;
+        };
         break;
 }
 
