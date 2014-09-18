@@ -2,24 +2,25 @@
 var jsbeautifier = require("js-beautify");
 
 var result = new Buffer('');
-var name = process.argv[2];
-var suffix = name.split(".");
+var suffix = process.argv[2];
 var beautify;
 
-suffix = suffix[suffix.length - 1];
-suffix = suffix.toLowerCase();
 switch (suffix) {
-case "html":
-    beautify = jsbeautifier.html;
-    break;
-case "css":
-    beautify = jsbeautifier.css;
-    break;
-case "js":
-case "json":
-default:
-    beautify = jsbeautifier.js;
-    break;
+    case "html":
+        beautify = jsbeautifier.html;
+        break;
+    case "css":
+        beautify = jsbeautifier.css;
+        break;
+    case "javascript":
+    case "json":
+        beautify = jsbeautifier.js;
+        break;
+    default:
+        beautify = function(result) {
+            return result;
+        };
+        break;
 }
 
 process.stdin.resume();
