@@ -74,8 +74,8 @@ vnoremap <lt> <lt>gv
 vnoremap > >gv
 
 " folding
-noremap <leader>2 :set shiftwidth=2<CR>:set softtabstop=2<CR>
-noremap <leader>4 :set shiftwidth=4<CR>:set softtabstop=4<CR>
+noremap <leader>2 :set shiftwidth=2<CR>:set softtabstop=2<CR>:set tabstop=2<CR>
+noremap <leader>4 :set shiftwidth=4<CR>:set softtabstop=4<CR>:set tabstop=4<CR>
 noremap <silent> <leader>f :set foldmethod=indent<CR>zM<CR>
 noremap <silent> <leader>F :set foldmethod=manual<CR>zR<CR>
 
