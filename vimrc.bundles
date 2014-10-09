@@ -4,6 +4,7 @@
 " Please create ~/.vimrc.bundles.local and add any extra bundles you want there
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'ervandew/supertab'
 Bundle 'gmarik/vundle'
 Bundle 'majutsushi/tagbar'
