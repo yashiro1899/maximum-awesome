@@ -1,6 +1,7 @@
 term "xterm-256color"
 escape ^Jj
 
+defbce on
 defscrollback 30000
 startup_message off
 vbell off
