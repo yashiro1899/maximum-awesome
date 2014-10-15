@@ -1,2 +1,10 @@
 #!/bin/bash
-screen -r -d -S icewhite || screen -S icewhite
+
+sessionname="icewhite"
+attached=$(screen -list | grep "$sessionname\t(Attached)")
+detached=$(screen -list | grep "$sessionname\t(Detached)")
+
+if [ -z "$attached" ] && [ -z  "$detached" ]; then screen -S $sessionname
+elif [ -n "$attached" ];then screen -d
+elif [ -n "$detached" ];then screen -r -d -S $sessionname
+fi
