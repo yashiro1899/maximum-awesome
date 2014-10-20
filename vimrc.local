@@ -51,6 +51,6 @@ autocmd FileType,Vimenter,TabEnter * execute ":nnoremap <F10> ggVG:!beautifiers 
 
 " dash
 nmap <leader>h <Plug>DashSearch
-let g:dash_map = {
+let g:dash_map={
 \ 'coffee' : ['javascript', 'nodejs']
 \ }
