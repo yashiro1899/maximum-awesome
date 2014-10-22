@@ -48,7 +48,7 @@ set wildmenu                                                 " show a navigable 
 set mouse=a
 
 " keyboard shortcuts
-let mapleader = ','
+let mapleader=','
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
@@ -85,11 +85,11 @@ cnoremap w!! %!sudo tee > /dev/null %
 
 " plugin settings
 let g:NERDSpaceDelims=1
-let g:gitgutter_enabled = 0
-let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = '~'
-let g:gitgutter_sign_removed = '-'
-let g:gitgutter_sign_modified_removed = '$'
+let g:gitgutter_enabled=0
+let g:gitgutter_sign_added='+'
+let g:gitgutter_sign_modified='~'
+let g:gitgutter_sign_removed='-'
+let g:gitgutter_sign_modified_removed='$'
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
