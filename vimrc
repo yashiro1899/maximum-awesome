@@ -91,6 +91,9 @@ let g:gitgutter_sign_modified='~'
 let g:gitgutter_sign_removed='-'
 let g:gitgutter_sign_modified_removed='$'
 
+" commentary
+autocmd FileType nginx set commentstring=#\ %s"
+
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
