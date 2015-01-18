@@ -1,6 +1,6 @@
 #!/bin/bash
 GIT=$(which git)
-VIM=$(which vimx)
+VIM=$(which vim)
 
 if [ $# -gt 1 ]; then
     FILES=""
