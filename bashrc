@@ -1,17 +1,10 @@
 export NODE_PATH="/usr/lib/node_modules"
 alias rm='rm -i'
 alias ls='ls --color'
+alias vi="/usr/bin/vim"
 
 if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
-fi
-if [ -e /usr/bin/vimx ]; then
-    alias vi="/usr/bin/vimx"
-    alias vim="/usr/bin/vimx"
-fi
-if [ -e /usr/bin/xsel ]; then
-    alias pbcopy='/usr/bin/xsel --clipboard --input'
-    alias pbpaste='/usr/bin/xsel --clipboard --output'
 fi
 
 function parse_git_branch() {

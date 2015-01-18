@@ -13,7 +13,7 @@ hardstatus alwayslastline "%{bk}%-w%{gk}[%n %t]%{bk}%+w %=%{wk}%c:%s, %Y-%m-%d"
 
 
 # 0
-chdir "$HOME/Documents/workspace/"
+chdir "$HOME/workspace/"
 screen -t ice
 
 # 1
