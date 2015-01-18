@@ -72,7 +72,6 @@ inoremap <C-e> <End>
 inoremap <C-d> <Delete>
 vnoremap <lt> <lt>gv
 vnoremap > >gv
-vnoremap <leader>y "+y
 
 " folding
 noremap <leader>2 :set shiftwidth=2<CR>:set softtabstop=2<CR>:set tabstop=2<CR>
@@ -92,7 +91,7 @@ let g:gitgutter_sign_removed='-'
 let g:gitgutter_sign_modified_removed='$'
 
 " commentary
-autocmd FileType nginx set commentstring=#\ %s"
+autocmd FileType nginx set commentstring=#\ %s
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
