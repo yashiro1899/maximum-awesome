@@ -1,8 +1,8 @@
 #!/bin/bash
 
 HOSTSFILE="/etc/hosts"
-if [ -d "$1" ]; then filespath="$1"; else filespath="$HOME/.hosts"; fi
-files=$(find $filespath -type f -maxdepth 1)
+FILESPATH="$HOME/.hosts"
+files=$(find $FILESPATH -type f -maxdepth 1 2> /dev/null)
 
 for h in $files; do
     cmp $HOSTSFILE $h &> /dev/null
@@ -14,14 +14,29 @@ for h in $files; do
     fi
 done
 
-select h in ${files//$filespath\//}; do
-    if [ -z "$h" ]; then break; fi
-    if [ $current == $h ]; then break; fi
-
-    sudo cp "$filespath/$h" $HOSTSFILE
+function cphosts() {
+    sudo cp "$FILESPATH/$1" $HOSTSFILE
     echo -e "\n"
-    echo "Changed \"$HOSTSFILE\" to [ ${h##*/} ]"
+    echo "Changed \"$HOSTSFILE\" to [ ${1##*/} ]"
     echo
     cat -n $HOSTSFILE
+}
+
+
+i=0
+for h in $files; do
+    (( i++ ))
+    if [ "$1" = "$i" ]; then
+        cphosts ${h//$FILESPATH\//}
+        exit 0
+    fi
+done
+
+
+select h in ${files//$FILESPATH\//}; do
+    if [ -z "$h" ]; then break; fi
+    if [ "$current" = "$h" ]; then break; fi
+
+    cphosts $h
     break
 done
