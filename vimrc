@@ -45,7 +45,7 @@ set wildmenu                                                 " show a navigable 
 
 " Enable basic mouse behavior such as resizing buffers.
 " OSX needs https://bitheap.org/mouseterm/
-set mouse=a
+" set mouse=a
 
 " keyboard shortcuts
 let mapleader=','
