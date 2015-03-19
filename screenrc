@@ -1,3 +1,4 @@
+term "xterm-256color"
 escape ^Jj
 
 defbce on
