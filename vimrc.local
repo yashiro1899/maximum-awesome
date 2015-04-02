@@ -1,4 +1,5 @@
 set nocursorline " don't highlight current line
+set colorcolumn=81
 
 " keyboard shortcuts
 " inoremap jj <ESC>

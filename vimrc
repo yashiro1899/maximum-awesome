@@ -24,7 +24,6 @@ set autoread                                                 " reload files when
 set backspace=2                                              " Fix broken backspace in some setups
 set backupcopy=yes                                           " see :help crontab
 set clipboard=unnamed                                        " yank and paste with the system clipboard
-set colorcolumn=81                                           " 80 column
 set directory-=.                                             " don't store swapfiles in the current directory
 set encoding=utf-8
 set expandtab                                                " expand tabs to spaces
@@ -40,6 +39,7 @@ set shiftwidth=4                                             " normal mode inden
 set showcmd
 set smartcase                                                " case-sensitive search if any caps
 set softtabstop=4                                            " insert mode tab and backspace use 4 spaces
+set splitright
 set tabstop=4                                                " actual tabs occupy 8 characters
 set wildignore=log/**,target/**,tmp/**,*.rbc
 set wildmenu                                                 " show a navigable menu for tab completion
