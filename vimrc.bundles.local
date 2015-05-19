@@ -1,5 +1,6 @@
 Bundle 'juvenn/mustache.vim'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'mattn/emmet-vim'
 Bundle 'mintplant/vim-literate-coffeescript'
 Bundle 'pangloss/vim-javascript'
 Bundle 'vim-scripts/nginx.vim'
