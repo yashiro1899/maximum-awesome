@@ -33,9 +33,8 @@ endfunction
 command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
 silent! autocmd VimEnter * RemoveConflictingAlignMaps
 
-" html tag closer
-inoremap <C-t> <lt>><lt>/><ESC>3hi
-inoremap <C-c> <ESC>vT<yf/pF<i
+" emmet
+let g:user_emmet_leader_key='<C-T>'
 
 " filetypes
 autocmd BufRead,BufNewFile *.md set filetype=markdown
