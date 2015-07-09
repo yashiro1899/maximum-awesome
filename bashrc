@@ -1,5 +1,7 @@
 export NODE_PATH="/usr/local/lib/node_modules"
 export PYTHONSTARTUP="$HOME/.pythonrc"
+export SASS_BINARY_SITE="http://ued.qunar.com/node-sass/release"
+
 alias rm='rm -i'
 alias ls='ls --color'
 alias vi="/usr/bin/vim"
