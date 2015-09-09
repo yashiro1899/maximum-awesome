@@ -57,7 +57,6 @@ noremap <C-l> <C-w>l
 nnoremap <leader>c :retab<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>e :FencAutoDetect<CR>
-nnoremap <leader>g :GitGutterToggle<CR>
 nnoremap <leader>l :NERDTreeFind<CR>
 nnoremap <leader>t :TagbarToggle<CR>
 nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
