@@ -37,9 +37,9 @@ set ruler                                                    " show where you ar
 set scrolloff=3                                              " show context above/below cursorline
 set shiftwidth=4                                             " normal mode indentation commands use 4 spaces
 set showcmd
-set splitright
 set smartcase                                                " case-sensitive search if any caps
 set softtabstop=4                                            " insert mode tab and backspace use 4 spaces
+set splitright
 set tabstop=4                                                " actual tabs occupy 8 characters
 set wildignore=log/**,target/**,tmp/**,*.rbc
 set wildmenu                                                 " show a navigable menu for tab completion
@@ -84,11 +84,6 @@ cnoremap w!! %!sudo tee > /dev/null %
 
 " plugin settings
 let g:NERDSpaceDelims=1
-let g:gitgutter_enabled=0
-let g:gitgutter_sign_added='+'
-let g:gitgutter_sign_modified='~'
-let g:gitgutter_sign_removed='-'
-let g:gitgutter_sign_modified_removed='$'
 
 " commentary
 autocmd FileType nginx set commentstring=#\ %s
