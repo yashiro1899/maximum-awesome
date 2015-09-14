@@ -84,11 +84,6 @@ cnoremap w!! %!sudo tee > /dev/null %
 
 " plugin settings
 let g:NERDSpaceDelims=1
-let g:gitgutter_enabled=0
-let g:gitgutter_sign_added='+'
-let g:gitgutter_sign_modified='~'
-let g:gitgutter_sign_removed='-'
-let g:gitgutter_sign_modified_removed='$'
 
 " commentary
 autocmd FileType nginx set commentstring=#\ %s
