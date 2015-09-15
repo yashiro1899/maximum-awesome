@@ -1,7 +1,7 @@
 #!/bin/bash
 
 JSL=$(which jsl)
-PARAM="-conf $HOME/bin/jsl.conf -nologo -nofilelisting -nosummary -nocontext"
+PARAM="-conf $HOME/.bin/jsl.conf -nologo -nofilelisting -nosummary -nocontext"
 if [ "$1" = '-stdin' ]; then
     "$JSL" $PARAM $1
 else
@@ -14,15 +14,11 @@ else
 
     IFS=$'\n'
     for line in $result; do
-        if [ -z "$path" ]; then
+        if [ -z "$path" ] || [ "$path" != "${line%%(*}" ]; then
             path=${line%%(*}
-        elif [ "$path" != "${line%%(*}" ]; then
-            path=${line%%(*}
+            rel=$(node -p "require('path').relative(process.cwd(), '$path')")
         fi
 
-        current=$(pwd -W)
-        other="(${line#*(}"
-
-        echo $(realpath --relative-to="$current" "$path")$other
+        echo "$rel(${line#*(}"
     done
 fi
