@@ -14,13 +14,11 @@ else
 
     IFS=$'\n'
     for line in $result; do
-        if [ -z "$path" ]; then
+        if [ -z "$path" ] || [ "$path" != "${line%%(*}" ]; then
             path=${line%%(*}
-        elif [ "$path" != "${line%%(*}" ]; then
-            path=${line%%(*}
+            rel=$(realpath --relative-to=. "$path")$other
         fi
 
-        other="(${line#*(}"
-        echo $(realpath --relative-to=. "$path")$other
+        echo "$rel(${line#*(}"
     done
 fi
