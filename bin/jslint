@@ -16,7 +16,7 @@ else
     for line in $result; do
         if [ -z "$path" ] || [ "$path" != "${line%%(*}" ]; then
             path=${line%%(*}
-            rel=$(node -p "require('path').relative(process.cwd(), '$path')")
+            rel=$(realpath --relative-to=. $path)
         fi
 
         echo "$rel(${line#*(}"
