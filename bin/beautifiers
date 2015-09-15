@@ -28,5 +28,5 @@ process.stdin.on('data', function(chunk) {
 });
 process.stdin.on('end', function() {
     result = Buffer.concat(result);
-    console.log(beautify(result));
+    console.log(beautify(result.toString()));
 });

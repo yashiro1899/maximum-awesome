@@ -20,9 +20,7 @@ else
             path=${line%%(*}
         fi
 
-        current=$(pwd -W)
         other="(${line#*(}"
-
-        echo $(realpath --relative-to="$current" "$path")$other
+        echo $(realpath --relative-to=. "$path")$other
     done
 fi
