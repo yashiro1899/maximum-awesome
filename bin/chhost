@@ -13,15 +13,22 @@ for h in $files; do
         break
     fi
 done
+grep -E "^# this is beta" $HOSTSFILE &> /dev/null
+if [ $? -eq 0 ]; then
+    current="beta"
+    ip=$(tail -n 2 $HOSTSFILE | sed -e "/^#/d" -e "s/ .*$//")
+    echo "Current: [ $current($ip) ]"
+    echo
+fi
+
 
 function cphosts() {
     sudo cp "$FILESPATH/$1" $HOSTSFILE
-    echo -e "\n"
+
     echo "Changed \"$HOSTSFILE\" to [ ${1##*/} ]"
     echo
     cat -n $HOSTSFILE
 }
-
 
 i=0
 for h in $files; do
@@ -32,11 +39,27 @@ for h in $files; do
     fi
 done
 
-
 select h in ${files//$FILESPATH\//}; do
     if [ -z "$h" ]; then break; fi
-    if [ "$current" = "$h" ]; then break; fi
 
+    if [ "beta" = "$h" ]; then
+        beta="$FILESPATH/beta"
+        select i in $(grep -E "^# \d{1,3}\." $beta | cut -c 3-); do
+            sudo sh -c "sed -e '/te\.hotel/,$ d' $beta > $HOSTSFILE"
+            sudo sh -c "echo '$i  te.hotel.qunar.com hotel.qunar.com bnb.qunar.com' >> $HOSTSFILE"
+            sudo sh -c "echo '# this is beta' >> $HOSTSFILE"
+
+            echo -ne "\n"
+            echo "Changed \"$HOSTSFILE\" to [ beta ]"
+            echo
+            cat -n $HOSTSFILE
+            break
+        done
+        break
+    fi
+
+    if [ "$current" = "$h" ]; then break; fi
+    echo -ne "\n"
     cphosts $h
     break
 done
