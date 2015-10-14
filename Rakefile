@@ -201,7 +201,7 @@ exec /Applications/MacVim.app/Contents/MacOS/Vim "$@"
   desc 'Install Vundle'
   task :vundle do
     step 'vundle'
-    install_github_bundle 'gmarik','vundle'
+    install_github_bundle 'vundlevim','vundle.vim'
     sh 'vim -c "PluginInstall!" -c "q" -c "q"'
   end
 

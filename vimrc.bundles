@@ -2,7 +2,6 @@
 " Do NOT add bundles to this list, as they might get removed when you upgrade
 " Maximum Awesome.
 " Please create ~/.vimrc.bundles.local and add any extra bundles you want there
-Plugin 'gmarik/vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ervandew/supertab'
 Plugin 'majutsushi/tagbar'
@@ -13,3 +12,4 @@ Plugin 'tpope/vim-surround'
 Plugin 'tyru/fencview.vim'
 Plugin 'vim-scripts/align'
 Plugin 'vim-scripts/closepairs'
+Plugin 'vundlevim/vundle.vim'
