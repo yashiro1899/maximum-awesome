@@ -1,10 +1,11 @@
 #!/bin/bash
 
+SCREEN="/usr/local/bin/screen"
 sessionname="icewhite"
-attached=$(screen -list | grep "$sessionname\t(Attached)")
-detached=$(screen -list | grep "$sessionname\t(Detached)")
+attached=$($SCREEN -list | grep "$sessionname\t(Attached)")
+detached=$($SCREEN -list | grep "$sessionname\t(Detached)")
 
-if [ -z "$attached" ] && [ -z  "$detached" ]; then screen -S $sessionname
-elif [ -n "$attached" ];then screen -d
-elif [ -n "$detached" ];then screen -r -d -S $sessionname
+if [ -z "$attached" ] && [ -z  "$detached" ]; then $SCREEN -S $sessionname
+elif [ -n "$attached" ];then $SCREEN -d
+elif [ -n "$detached" ];then $SCREEN -r -d -S $sessionname
 fi

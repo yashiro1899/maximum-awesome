@@ -22,7 +22,7 @@ if [ $? -eq 0 ]; then
 fi
 
 
-function cphosts() {
+cphosts() {
     sudo cp "$FILESPATH/$1" $HOSTSFILE
 
     echo "Changed \"$HOSTSFILE\" to [ ${1##*/} ]"
