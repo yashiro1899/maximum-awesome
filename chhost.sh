@@ -66,7 +66,7 @@ select h in ${files//$FILESPATH\//}; do
     if [ -d $list ]; then
         cd $list
         select i in *; do
-            cd -
+            cd - > /dev/null
             cat $FILESPATH/$h $list/$i > $HOSTSFILE
 
             echo -ne "\n"
