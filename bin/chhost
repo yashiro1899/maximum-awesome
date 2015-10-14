@@ -70,6 +70,6 @@ select h in ${files//$FILESPATH\//}; do
 
     if [ "$current" = "$h" ]; then break; fi
     echo -ne "\n"
-    cphosts $h
+    cphosts $FILESPATH/$h
     break
 done
