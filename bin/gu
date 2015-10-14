@@ -1,4 +1,5 @@
 #!/bin/bash
+
 GIT=$(which git)
 if [ $# -gt 0 ]; then
     MSG=$@', at'$(date '+%n%c')
