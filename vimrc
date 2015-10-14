@@ -7,14 +7,16 @@ syntax enable
 " configure Vundle
 filetype on " without this vim emits a zero exit status, later, because of :ft off
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/vundle.vim/
+call vundle#begin()
 
 " install Vundle bundles
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
   source ~/.vimrc.bundles.local
 endif
+
+call vundle#end()
 
 " ensure ftdetect et al work by including this after the Vundle stuff
 filetype plugin indent on
@@ -45,7 +47,6 @@ set wildignore=log/**,target/**,tmp/**,*.rbc
 set wildmenu                                                 " show a navigable menu for tab completion
 
 " Enable basic mouse behavior such as resizing buffers.
-" OSX needs https://bitheap.org/mouseterm/
 " set mouse=a
 
 " keyboard shortcuts
@@ -84,9 +85,6 @@ cnoremap w!! %!sudo tee > /dev/null %
 
 " plugin settings
 let g:NERDSpaceDelims=1
-
-" commentary
-autocmd FileType nginx set commentstring=#\ %s
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
