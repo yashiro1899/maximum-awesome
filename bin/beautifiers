@@ -1,28 +1,20 @@
 #!/usr/bin/env node
+
+'use strict';
 var jsbeautifier = require("js-beautify");
 
-var result = [];
-var suffix = process.argv[2];
-var beautify;
+var type = process.argv[2];
+var result, beautify;
 
-switch (suffix) {
-    case "html":
-        beautify = jsbeautifier.html;
-        break;
-    case "css":
-        beautify = jsbeautifier.css;
-        break;
-    case "javascript":
-    case "json":
-        beautify = jsbeautifier.js;
-        break;
-    default:
-        beautify = function(result) {
-            return result;
-        };
-        break;
+if (type === 'javascript' || type === 'json') {
+    beautify = jsbeautifier.js;
+} else {
+    beautify = function(content) {
+        return content;
+    };
 }
 
+result = [];
 process.stdin.on('data', function(chunk) {
     result.push(chunk);
 });
