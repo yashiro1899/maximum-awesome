@@ -18,9 +18,10 @@ peace-loving hippies. Built for Mac OS X.
 * `,b` restricts ctrlp.vim to open buffers
 * `,a` starts project search with [ag.vim](https://github.com/rking/ag.vim) using [the silver searcher](https://github.com/ggreer/the_silver_searcher) (like ack, but faster)
 * `ds`/`cs` delete/change surrounding characters (e.g. `"Hey!"` + `ds"` = `Hey!`, `"Hey!"` + `cs"'` = `'Hey!'`) with [vim-surround](https://github.com/tpope/vim-surround)
-* `\\\` toggles current line comment
-* `\\` toggles visual selection comment lines
+* `gcc` toggles current line comment
+* `gc` toggles visual selection comment lines
 * `vii`/`vai` visually select *in* or *around* the cursor's indent
+* `Vp`/`vp` replaces visual selection with default register *without* yanking selected text (works with any visual selection)
 * `,[space]` strips trailing whitespace
 * `<C-]>` jump to definition using ctags
 * `,l` begins aligning lines on a string, usually used as `,l=` to align assignments
@@ -43,6 +44,15 @@ You can adjust the size of the smaller panes in `tmux.conf` by lowering or incre
 
     rake
 
+## Update
+
+    rake
+
+This will update all installed plugins using Vundle's `:PluginInstall!`
+command. Any errors encountered during this process may be resolved by clearing
+out the problematic directories in ~/.vim/bundle. `:help PluginInstall`
+provides more detailed information about Vundle.
+
 ## Customize
 In your home directory, Maximum Awesome creates `.vimrc.local`, `.vimrc.bundles.local` and `.tmux.conf.local` files where you can customize
 Vim and tmux to your heart’s content. However, we’d love to incorporate your changes and improve Vim and tmux
@@ -55,6 +65,13 @@ for everyone, so feel free to fork Maximum Awesome and open some pull requests!
 Note that this won't remove everything, but your vim configuration should be reset to whatever it was before installing. Some uninstallation steps will be manual.
 
 ## Contribute
+
+Before creating your pull request, consider whether the feature you want to add
+is something that you think *every* user of maximum-awesome should have. Is it
+support for a very common language people would ordinarily use vim to write? Is
+it a useful utility that does not change many defaults and composes well with
+other parts of maximum-awesome? If so then perhaps it would be a good fit. If
+not, perhaps keep it in your `*.local` files. This does not apply to bug fixes.
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -76,3 +93,7 @@ request, we'll make sure you're in the list of people who have signed a CLA.
 
 Thanks to the vimsters at Square who put this together. Thanks to Tim Pope for
 his awesome vim plugins.
+
+
+## Tricks
+Open solarized.vim, search for LineNr, remove the line.
