@@ -1,4 +1,5 @@
 set nocursorline " don't highlight current line
+set colorcolumn=81
 
 " keyboard shortcuts
 " inoremap jj <ESC>
@@ -9,7 +10,8 @@ set nocursorline " don't highlight current line
 
 " gui settings
 if (&t_Co == 256 || has('gui_running'))
-  let g:solarized_termtrans=1        " for OSX terminal
+  let g:solarized_termcolors = 256
+  let g:solarized_termtrans  = 1  " for OSX terminal
   set background=dark
   colorscheme solarized
 else
@@ -32,8 +34,15 @@ endfunction
 command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
 silent! autocmd VimEnter * RemoveConflictingAlignMaps
 
+" commentary
+autocmd FileType nginx set commentstring=#\ %s
+
 " emmet
 let g:user_emmet_leader_key='<C-T>'
+
+" filetypes
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.md set spell
 
 " jslint & csslint
 autocmd FileType javascript set makeprg=$HOME/bin/jslint\ %
