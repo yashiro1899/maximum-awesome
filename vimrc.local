@@ -10,7 +10,7 @@ set colorcolumn=81
 
 " gui settings
 if (&t_Co == 256 || has('gui_running'))
-  let g:solarized_termtrans=1        " for OSX terminal
+  let g:solarized_termtrans=1  " for OSX terminal
   set background=dark
   colorscheme solarized
 else
@@ -32,6 +32,9 @@ function! s:RemoveConflictingAlignMaps()
 endfunction
 command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
 silent! autocmd VimEnter * RemoveConflictingAlignMaps
+
+" commentary
+autocmd FileType nginx set commentstring=#\ %s
 
 " emmet
 let g:user_emmet_leader_key='<C-T>'
