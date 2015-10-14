@@ -1,16 +1,16 @@
-" Bundles here are part of the core Maximum Awesome setup
+" Plugins here are part of the CORE Maximum Awesome setup
 " Do NOT add bundles to this list, as they might get removed when you upgrade
 " Maximum Awesome.
 " Please create ~/.vimrc.bundles.local and add any extra bundles you want there
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'ervandew/supertab'
-Bundle 'gmarik/vundle'
-Bundle 'jnurmine/Zenburn'
-Bundle 'majutsushi/tagbar'
-Bundle 'rking/ag.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-surround'
-Bundle 'tyru/fencview.vim'
-Bundle 'vim-scripts/Align'
-Bundle 'vim-scripts/ClosePairs'
+Plugin 'gmarik/vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'ervandew/supertab'
+Plugin 'jnurmine/zenburn'
+Plugin 'majutsushi/tagbar'
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
+Plugin 'tyru/fencview.vim'
+Plugin 'vim-scripts/align'
+Plugin 'vim-scripts/closepairs'
