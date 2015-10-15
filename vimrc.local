@@ -45,8 +45,8 @@ autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.md set spell
 
 " jslint & csslint
-autocmd FileType javascript set makeprg=jslint\ --terse\ %
-autocmd FileType javascript set errorformat=%f:%l:%c:\ %m
+autocmd FileType javascript set makeprg=jslint\ %
+autocmd FileType javascript set errorformat=%l:%c:\ %m
 autocmd FileType javascript inoremap <F9> <C-o>:make<CR>
 autocmd FileType javascript nnoremap <F9> :make<CR>
 autocmd FileType,Vimenter,TabEnter * execute ":vnoremap <F10> :!beautifiers " . &filetype . "<CR>"
