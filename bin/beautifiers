@@ -1,24 +1,47 @@
 #!/usr/bin/env node
 
 'use strict';
-var jsbeautifier = require("js-beautify");
-
 var type = process.argv[2];
-var result, beautify;
+var result = [];
 
-if (type === 'javascript' || type === 'json') {
-    beautify = jsbeautifier.js;
-} else {
-    beautify = function(content) {
-        return content;
-    };
+function beautify(content) {
+    switch (type) {
+    case 'css':
+        content = require("js-beautify")
+            .css(content);
+        break;
+    case 'javascript':
+    case 'json':
+        content = require("js-beautify")(content, {
+            jslint_happy: true,
+            break_chained_methods: true,
+            keep_array_indentation: true
+        });
+        break;
+    default:
+        break;
+    }
+
+    process.stdout.write(content);
 }
 
-result = [];
-process.stdin.on('data', function(chunk) {
-    result.push(chunk);
-});
-process.stdin.on('end', function() {
-    result = Buffer.concat(result);
-    console.log(beautify(result.toString()));
-});
+if (type === "java") {
+    require('child_process')
+        .spawn('uncrustify', [
+            '-c',
+            '/usr/local/etc/uncrustify.cfg',
+            '-l',
+            'java',
+            '-q'
+        ], {
+            stdio: 'inherit'
+        });
+} else {
+    process.stdin.on('data', function (chunk) {
+        result.push(chunk);
+    });
+    process.stdin.on('end', function () {
+        result = Buffer.concat(result);
+        beautify(result.toString());
+    });
+}
