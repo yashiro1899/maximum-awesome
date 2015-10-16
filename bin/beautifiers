@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 'use strict';
+var path = require('path');
+
 var type = process.argv[2];
 var result = [];
 
@@ -29,7 +31,7 @@ if (type === "java") {
     require('child_process')
         .spawn('uncrustify', [
             '-c',
-            '/usr/local/etc/uncrustify.cfg',
+            path.join(process.env.HOME, '.uncrustify.cfg'),
             '-l',
             'java',
             '-q'
