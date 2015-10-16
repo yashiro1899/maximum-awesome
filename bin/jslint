@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+'use strict';
 var fs = require("fs");
 var path = require("path");
 var vm = require("vm");
@@ -7,37 +8,34 @@ var vm = require("vm");
 var ctx = vm.createContext();
 var jslintSource = fs.readFileSync(path.join(__dirname, 'jslint.js'));
 
-vm.runInContext(jslintSource, ctx);
-var filename = process.argv[2];
-var script = fs.readFileSync(filename, 'UTF8');
-
-var result = ctx.jslint(preprocessScript(script), {
-    es6    : true,
-    node   : true,
-    white  : true
-});
-
-if (result.ok) {
-    process.exit(0);
-} else {
-    result.warnings.forEach(function(e) {
-        // `fudge` is not work in nodejs
-        console.error((e.line + 1) + ':' + e.column + ': ' + e.message);
-    });
-    process.exit(1);
-}
-
-
 function preprocessScript(script) {
-    'use strict';
-
     // Fix UTF8 with BOM
     if (script.charCodeAt(0) === 0xFEFF) {
         script = script.slice(1);
     }
 
     // remove shebang: replace it with empty line
-    script = script.replace(/^\#\!.*/, "");
+    script = script.replace(/^#!.*/, "");
 
     return script;
+}
+
+vm.runInContext(jslintSource, ctx);
+var filename = process.argv[2];
+var script = fs.readFileSync(filename, 'UTF8');
+
+var result = ctx.jslint(preprocessScript(script), {
+    es6   : true,
+    node  : true,
+    white : true
+});
+
+if (result.ok) {
+    process.exit(0);
+} else {
+    result.warnings.forEach(function (e) {
+        // `fudge` is not work in nodejs
+        process.stderr.write((e.line + 1) + ':' + e.column + ': ' + e.message);
+    });
+    process.exit(1);
 }
