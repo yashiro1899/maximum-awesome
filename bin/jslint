@@ -35,7 +35,7 @@ if (result.ok) {
 } else {
     result.warnings.forEach(function (e) {
         // `fudge` is not work in nodejs
-        process.stderr.write((e.line + 1) + ':' + e.column + ': ' + e.message);
+        console.log((e.line + 1) + ':' + e.column + ': ' + e.message);
     });
     process.exit(1);
 }
