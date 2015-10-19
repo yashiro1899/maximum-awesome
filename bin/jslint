@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 
 /*property
-    argv, charCodeAt, column, createContext, error, es6, exit, forEach, join, jslint, keys, line, log, message, node, ok, property, readFileSync, replace, runInContext, slice, sort, warnings, white
+    argv, charCodeAt, column, createContext, devel, error, es6, exit,
+    forEach, join, jslint, keys, line, log, message, node, ok, property,
+    readFileSync, replace, runInContext, slice, sort, this, warnings, white
 */
+
+
 
 
 'use strict';
@@ -32,6 +36,8 @@ var script = fs.readFileSync(filename, 'UTF8');
 var result = ctx.jslint(preprocessScript(script), {
     es6   : true,
     node  : true,
+    this  : true,
+    devel : true,
     white : true
 });
 
