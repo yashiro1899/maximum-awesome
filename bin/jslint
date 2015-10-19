@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 
+/*property
+    argv, charCodeAt, column, createContext, error, es6, exit, forEach, join, jslint, keys, line, log, message, node, ok, property, readFileSync, replace, runInContext, slice, sort, warnings, white
+*/
+
+
 'use strict';
 var fs = require("fs");
 var path = require("path");
@@ -29,6 +34,14 @@ var result = ctx.jslint(preprocessScript(script), {
     node  : true,
     white : true
 });
+
+if (process.argv[3] === '--property') {
+    console.log("/*property\n    %s\n*/\n",
+        Object.keys(result.property)
+        .sort()
+        .join(', '));
+    process.exit(0);
+}
 
 if (result.ok) {
     process.exit(0);
