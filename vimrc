@@ -95,6 +95,9 @@ endif
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
 
+" reset colors
+autocmd VimLeave * !echo -ne '\033[0m'
+
 " Go crazy!
 if filereadable(expand("~/.vimrc.local"))
   " In your .vimrc.local, you might like:
