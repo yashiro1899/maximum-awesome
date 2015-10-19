@@ -41,8 +41,8 @@ var result = ctx.jslint(preprocessScript(script), {
     white : true
 });
 
-if (process.argv[3] === '--property') {
-    console.log("/*property\n    %s\n*/\n",
+if (process.argv[3] !== undefined) {
+    console.log("/*property\n    %s\n*/",
         Object.keys(result.property)
         .sort()
         .join(', '));
