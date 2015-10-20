@@ -35,6 +35,7 @@ var script = fs.readFileSync(filename, 'UTF8');
 
 var result = ctx.jslint(preprocessScript(script), {
     es6   : true,
+    for   : true,
     node  : true,
     this  : true,
     devel : true,
