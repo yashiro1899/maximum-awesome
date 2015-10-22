@@ -98,6 +98,12 @@ autocmd VimResized * :wincmd =
 " reset colors
 autocmd VimLeave * !echo -ne '\033[0m'
 
+" When editing a file, always jump to the last cursor position
+autocmd BufReadPost *
+\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+\   exe "normal! g'\"" |
+\ endif
+
 " Go crazy!
 if filereadable(expand("~/.vimrc.local"))
   " In your .vimrc.local, you might like:
