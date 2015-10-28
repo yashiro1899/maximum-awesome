@@ -2,17 +2,15 @@
 
 /*property
     argv, charCodeAt, column, createContext, devel, error, es6, exit,
-    forEach, join, jslint, keys, line, log, message, node, ok, property,
+    for, forEach, join, jslint, keys, line, log, message, node, ok, property,
     readFileSync, replace, runInContext, slice, sort, this, warnings, white
 */
 
 
-
-
 'use strict';
-var fs = require("fs");
-var path = require("path");
-var vm = require("vm");
+const fs = require("fs");
+const path = require("path");
+const vm = require("vm");
 
 var ctx = vm.createContext();
 var jslintSource = fs.readFileSync(path.join(__dirname, 'jslint.js'));
