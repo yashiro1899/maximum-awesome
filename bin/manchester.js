@@ -17,6 +17,7 @@ const MIME = {
 };
 
 var server = http.createServer(function (req, res) {
+    var parsedURL = url.parse(req.url);
     var configs = require(path.join(process.env.HOME, '.manchester.json'));
     var prefixes = Object.keys(configs);
 
@@ -25,7 +26,7 @@ var server = http.createServer(function (req, res) {
     var prefix, conf, stat, headers;
     while (i < l) {
         prefix = prefixes[i];
-        if (req.url.indexOf(prefix) > -1) {
+        if (parsedURL.hostname + parsedURL.pathname === prefix) {
             conf = configs[prefix];
             stat = fs.statSync(conf.filepath);
 
@@ -39,14 +40,28 @@ var server = http.createServer(function (req, res) {
             res.writeHead(200, headers);
             fs.createReadStream(conf.filepath)
                 .pipe(res);
-
             return null;
         }
 
         i += 1;
     }
 
-    res.end('kk\n');
+    var proxyReq = http.request({
+        host    : parsedURL.hostname,
+        port    : parsedURL.port,
+        method  : req.method,
+        path    : parsedURL.path,
+        headers : req.headers
+    });
+
+    proxyReq.on('response', function (proxyRes) {
+        res.writeHead(proxyRes.statusCode, proxyRes.headers);
+        proxyRes.pipe(res);
+    });
+    proxyReq.on('error', function (err) {
+        console.error('\x1b[31m[proxy]\x1b[0m\n%s', err.stack);
+    });
+    req.pipe(proxyReq);
 });
 
 server.listen(8122);
@@ -62,10 +77,10 @@ server.on('connect', function (req, socket, head) {
         socket.write('HTTP/1.1 200 Connection Established\r\n\r\n');
 
         this.write(head);
+        this.pipe(socket);
         socket.pipe(this);
     });
 
-    proxySocket.pipe(socket);
     proxySocket.on('error', function (err) {
         console.error('\x1b[31m[https]\x1b[0m\n%s', err.stack);
     });
