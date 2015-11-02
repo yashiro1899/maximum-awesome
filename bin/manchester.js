@@ -44,6 +44,9 @@ var server = http.createServer(function (req, res) {
             res.writeHead(200, headers);
             fs.createReadStream(conf.filepath)
                 .pipe(res);
+
+            stat = path.relative(process.cwd(), conf.filepath);
+            console.log('\x1b[34m[manchester]\x1b[0m\n%s => %s', prefix, stat);
             return null;
         }
 
@@ -97,4 +100,8 @@ server.on('upgrade', function (ignore, socket) {
         'Connection: Upgrade\r\n\r\n');
 
     socket.pipe(socket);
+});
+
+server.on('listening', function () {
+    console.log('Serving HTTP on 0.0.0.0 port 8122 ...');
 });
