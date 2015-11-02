@@ -14,11 +14,24 @@ const net = require('net');
 const url = require('url');
 
 const MIME = {
-    css: 'text/css',
-    html: 'text/html',
-    js: 'application/javascript',
-    json: 'application/json'
+    '.css'  : 'text/css',
+    '.html' : 'text/html',
+    '.js'   : 'application/javascript',
+    '.json' : 'application/json'
 };
+
+function request(req, res, options) {
+    var proxyReq = http.request(options);
+
+    proxyReq.on('response', function (proxyRes) {
+        res.writeHead(proxyRes.statusCode, proxyRes.headers);
+        proxyRes.pipe(res);
+    });
+    proxyReq.on('error', function (err) {
+        console.error('\x1b[31m[proxy]\x1b[0m\n%s', err.stack);
+    });
+    req.pipe(proxyReq);
+}
 
 var server = http.createServer(function (req, res) {
     var parsedURL = url.parse(req.url);
@@ -37,6 +50,7 @@ var server = http.createServer(function (req, res) {
             headers = conf.headers || {};
             headers['Content-Length'] = stat.size;
             headers.Server = 'Manchester';
+            console.log(conf.filepath);
             if (headers['Content-Type'] === undefined) {
                 headers['Content-Type'] = MIME[path.extname(conf.filepath)];
             }
@@ -53,22 +67,13 @@ var server = http.createServer(function (req, res) {
         i += 1;
     }
 
-    var proxyReq = http.request({
+    request(req, res, {
         host    : parsedURL.hostname,
         port    : parsedURL.port,
         method  : req.method,
         path    : parsedURL.path,
         headers : req.headers
     });
-
-    proxyReq.on('response', function (proxyRes) {
-        res.writeHead(proxyRes.statusCode, proxyRes.headers);
-        proxyRes.pipe(res);
-    });
-    proxyReq.on('error', function (err) {
-        console.error('\x1b[31m[proxy]\x1b[0m\n%s', err.stack);
-    });
-    req.pipe(proxyReq);
 });
 
 server.listen(8122);
