@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /*property
     HOME, Server, connect, createReadStream, createServer, css, cwd,
     env, error, extname, filepath, headers, host, hostname, html, join, js, json,
