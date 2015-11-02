@@ -45,21 +45,32 @@ var server = http.createServer(function (req, res) {
         prefix = prefixes[i];
         if (parsedURL.hostname + parsedURL.pathname === prefix) {
             conf = configs[prefix];
-            stat = fs.statSync(conf.filepath);
 
-            headers = conf.headers || {};
-            headers['Content-Length'] = stat.size;
-            headers.Server = 'Manchester';
-            console.log(conf.filepath);
-            if (headers['Content-Type'] === undefined) {
-                headers['Content-Type'] = MIME[path.extname(conf.filepath)];
+            if (conf.url) {
+                parsedURL = url.parse(conf.url);
+                request(req, res, {
+                    host    : parsedURL.hostname,
+                    port    : parsedURL.port,
+                    method  : req.method,
+                    path    : parsedURL.path,
+                    headers : req.headers
+                });
+                stat = conf.url;
+            } else {
+                stat = fs.statSync(conf.filepath);
+                headers = conf.headers || {};
+                headers['Content-Length'] = stat.size;
+                headers.Server = 'Manchester';
+                if (headers['Content-Type'] === undefined) {
+                    headers['Content-Type'] = MIME[path.extname(conf.filepath)];
+                }
+
+                res.writeHead(200, headers);
+                fs.createReadStream(conf.filepath)
+                    .pipe(res);
+
+                stat = path.relative(process.cwd(), conf.filepath);
             }
-
-            res.writeHead(200, headers);
-            fs.createReadStream(conf.filepath)
-                .pipe(res);
-
-            stat = path.relative(process.cwd(), conf.filepath);
             console.log('\x1b[34m[manchester]\x1b[0m\n%s => %s', prefix, stat);
             return null;
         }
