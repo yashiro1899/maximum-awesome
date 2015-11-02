@@ -1,9 +1,5 @@
 /*property
-    HOME, Server, connect, createReadStream, createServer, css,
-    env, error, extname, filepath, headers, host, hostname, html,
-    join, js, json, keys, length, listen, method, on, parse,
-    path, pathname, pipe, port, request, size, stack, statSync,
-    statusCode, url, write, writeHead
+    HOME, Server, connect, createReadStream, createServer, css, cwd, env, error, extname, filepath, headers, host, hostname, html, join, js, json, keys, length, listen, log, method, on, parse, path, pathname, pipe, port, relative, request, size, stack, statSync, statusCode, url, write, writeHead
 */
 
 'use strict';
