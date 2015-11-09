@@ -1,9 +1,16 @@
 #!/usr/bin/env node
 
+/*property
+    argv, charCodeAt, column, createContext, devel, error, es6, exit,
+    for, forEach, join, jslint, keys, line, log, message, node, ok, property,
+    readFileSync, replace, runInContext, slice, sort, this, warnings, white
+*/
+
+
 'use strict';
-var fs = require("fs");
-var path = require("path");
-var vm = require("vm");
+const fs = require("fs");
+const path = require("path");
+const vm = require("vm");
 
 var ctx = vm.createContext();
 var jslintSource = fs.readFileSync(path.join(__dirname, 'jslint.js'));
@@ -26,9 +33,20 @@ var script = fs.readFileSync(filename, 'UTF8');
 
 var result = ctx.jslint(preprocessScript(script), {
     es6   : true,
+    for   : true,
     node  : true,
+    this  : true,
+    devel : true,
     white : true
 });
+
+if (process.argv[3] !== undefined) {
+    console.log("/*property\n    %s\n*/",
+        Object.keys(result.property)
+        .sort()
+        .join(', '));
+    process.exit(0);
+}
 
 if (result.ok) {
     process.exit(0);

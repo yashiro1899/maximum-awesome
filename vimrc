@@ -55,12 +55,11 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-nnoremap <leader>c :retab<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>e :FencAutoDetect<CR>
 nnoremap <leader>l :NERDTreeFind<CR>
 nnoremap <leader>t :TagbarToggle<CR>
-nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
+nnoremap <leader><space> :retab<CR>:call whitespace#strip_trailing()<CR>
 noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 nnoremap <C-n> :tabnext<CR>
 nnoremap <C-p> :tabprevious<CR>
