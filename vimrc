@@ -22,29 +22,29 @@ call vundle#end()
 filetype plugin indent on
 
 set autoindent
-set autoread                                                 " reload files when changed on disk, i.e. via `git checkout`
-set backspace=2                                              " Fix broken backspace in some setups
-set backupcopy=yes                                           " see :help crontab
-set clipboard=unnamed                                        " yank and paste with the system clipboard
-set directory-=.                                             " don't store swapfiles in the current directory
+set autoread                                  " reload files when changed on disk, i.e. via `git checkout`
+set backspace=2                               " Fix broken backspace in some setups
+set backupcopy=yes                            " see :help crontab
+set clipboard=unnamed                         " yank and paste with the system clipboard
+set directory-=.                              " don't store swapfiles in the current directory
 set encoding=utf-8
-set expandtab                                                " expand tabs to spaces
+set expandtab                                 " expand tabs to spaces
 set hlsearch
-set ignorecase                                               " case-insensitive search
-set incsearch                                                " search as you type
-set list                                                     " show trailing whitespace
+set ignorecase                                " case-insensitive search
+set incsearch                                 " search as you type
+set list                                      " show trailing whitespace
 set listchars=tab:▸\ ,trail:▫
-set number                                                   " show line numbers
-set ruler                                                    " show where you are
-set scrolloff=3                                              " show context above/below cursorline
-set shiftwidth=4                                             " normal mode indentation commands use 4 spaces
+set number                                    " show line numbers
+set ruler                                     " show where you are
+set scrolloff=3                               " show context above/below cursorline
+set shiftwidth=4                              " normal mode indentation commands use 4 spaces
 set showcmd
-set smartcase                                                " case-sensitive search if any caps
-set softtabstop=4                                            " insert mode tab and backspace use 4 spaces
+set smartcase                                 " case-sensitive search if any caps
+set softtabstop=4                             " insert mode tab and backspace use 4 spaces
 set splitright
-set tabstop=4                                                " actual tabs occupy 8 characters
+set tabstop=4                                 " actual tabs occupy 8 characters
 set wildignore=log/**,target/**,tmp/**,*.rbc
-set wildmenu                                                 " show a navigable menu for tab completion
+set wildmenu                                  " show a navigable menu for tab completion
 
 " Enable basic mouse behavior such as resizing buffers.
 " set mouse=a
@@ -93,6 +93,9 @@ endif
 
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
+
+" reset colors
+autocmd VimLeave * !echo -ne '\033[0m'
 
 " Go crazy!
 if filereadable(expand("~/.vimrc.local"))
