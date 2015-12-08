@@ -1,0 +1,49 @@
+#!/bin/bash
+
+
+CONFIG="/d/Program Files/Shadowsocks/gui-config.json"
+INSTANCEID="i-478eede2"
+describe() {
+    aws ec2 describe-instances --instance-ids $INSTANCEID
+}
+getip() {
+    jq '.Reservations[].Instances[].PublicIpAddress' <<< $1
+}
+echossh() {
+    if [ "$1" == "null" ]; then
+        return 1
+    fi
+
+    echo -n "ssh"
+    echo -n " -o StrictHostKeyChecking=no"
+    echo -n " -o UserKnownHostsFile=/dev/null"
+    echo " ec2-user@$publicip"
+}
+
+case "$1" in
+    start)
+        aws ec2 "start-instances" --instance-ids $INSTANCEID | \
+            jq '.StartingInstances[].CurrentState.Name'
+
+        publicip="null"
+        while [ "$publicip" == "null" ]; do
+            sleep 2
+
+            output=$(describe)
+            publicip=$(getip "$output")
+            jq '.Reservations[].Instances[].State.Name' <<< $output
+        done
+        sed -i 's/"server": ".\+$/"server": '$publicip',/' "$CONFIG"
+        echossh $publicip;;
+    stop)
+        aws ec2 "stop-instances" --instance-ids $INSTANCEID | \
+            jq '.StoppingInstances[].CurrentState.Name';;
+    status)
+        output=$(describe)
+        publicip=$(getip "$output")
+        jq '.Reservations[].Instances[].State.Name' <<< $output
+        echossh $publicip;;
+    *)
+        echo "usage: $0 {start|stop|status}"
+        exit 2
+esac
