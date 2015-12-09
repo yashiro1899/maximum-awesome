@@ -15,3 +15,4 @@ completion=$(brew --prefix)/etc/bash_completion
 
 GIT_PS1_SHOWCOLORHINTS=1
 PROMPT_COMMAND='__git_ps1 "[\u@\h \W" "]\$ "'
+complete -C aws_completer aws
