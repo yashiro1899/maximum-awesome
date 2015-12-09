@@ -27,13 +27,13 @@ case "$1" in
 
         publicip="null"
         while [ "$publicip" == "null" ]; do
-            sleep 2
+            sleep 5
 
             output=$(describe)
             publicip=$(getip "$output")
             jq '.Reservations[].Instances[].State.Name' <<< $output
         done
-        sed -i 's/"server": ".\+$/"server": '$publicip',/' "$CONFIG"
+        sed -i '' 's/"server": ".\+$/"server": '$publicip',/' "$CONFIG"
         echossh $publicip;;
     stop)
         aws ec2 "stop-instances" --instance-ids $INSTANCEID | \
