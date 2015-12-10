@@ -33,7 +33,7 @@ case "$1" in
             publicip=$(getip "$output")
             jq '.Reservations[].Instances[].State.Name' <<< $output
         done
-        sed -i '' 's/"server": ".\+$/"server": '$publicip',/' "$CONFIG"
+        sed -i '' 's/"server": ".*$/"server": '$publicip',/' "$CONFIG"
         echossh $publicip;;
     stop)
         aws ec2 "stop-instances" --instance-ids $INSTANCEID | \
