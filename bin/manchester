@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 /*property
-    HOME, Server, connect, createReadStream, createServer, css, cwd,
-    env, error, extname, filepath, headers, host, hostname, html, join, js, json,
-    keys, length, listen, log, method, on, parse, path, pathname, pipe, port,
-    relative, request, size, stack, statSync, statusCode, url, write, writeHead
+    HOME, Server, connect, createReadStream, createServer, cwd, env, error,
+    extname, filepath, forEach, headers, host, hostname, join, keys, length,
+    listen, log, method, on, parse, path, pathname, pipe, port, relative,
+    request, size, stack, statSync, statusCode, url, write, writeHead
 */
+
 
 'use strict';
 const fs = require('fs');
@@ -40,13 +41,21 @@ var server = http.createServer(function (req, res) {
 
     var i = 0,
         l = prefixes.length;
-    var prefix, conf, stat, headers;
+    var prefix, conf, stat, headers, j;
     while (i < l) {
         prefix = prefixes[i];
         if (parsedURL.hostname + parsedURL.pathname === prefix) {
             conf = configs[prefix];
 
             if (conf.url) {
+                if (conf.headers) {
+                    headers = Object.keys(conf.headers);
+                    for (j = 0; j < headers.length; j += 1) {
+                        stat = headers[j];
+                        req.headers[stat] = conf.headers[stat];
+                    }
+                }
+
                 parsedURL = url.parse(conf.url);
                 request(req, res, {
                     host    : parsedURL.hostname,
