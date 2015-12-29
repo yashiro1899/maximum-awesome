@@ -20,7 +20,15 @@ echossh() {
     echo -n "ssh"
     echo -n " -o StrictHostKeyChecking=no"
     echo -n " -o UserKnownHostsFile=/dev/null"
-    echo " ec2-user@$publicip"
+    echo " ec2-user@$1"
+}
+hosts() {
+    if [ "$1" == "null" ]; then
+        return 1
+    fi
+
+    sudo sed -i '' '/icewhite\.us/d' /etc/hosts
+    sudo bash -c "echo $1 icewhite.us >> /etc/hosts"
 }
 
 case "$1" in
@@ -37,6 +45,7 @@ case "$1" in
             jq '.Reservations[].Instances[].State.Name' <<< $output
         done
         sed -i '' 's/"server": ".*$/"server": '$publicip',/' "$CONFIG"
+        hosts $publicip
         echossh $publicip;;
     stop)
         aws ec2 "stop-instances" --instance-ids $INSTANCEID | \
@@ -45,6 +54,7 @@ case "$1" in
         output=$(describe)
         publicip=$(getip "$output")
         jq '.Reservations[].Instances[].State.Name' <<< $output
+        hosts $publicip
         echossh $publicip;;
     *)
         echo "usage: $0 {start|stop|status}"
