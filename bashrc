@@ -4,6 +4,7 @@ export PYTHONSTARTUP="$HOME/.pythonrc"
 
 [[ ${PATH/\/Users/} == $PATH ]] && PATH=$PATH:$HOME/.bin
 export PATH
+export EDITOR="/usr/local/bin/vim"
 
 alias ls='ls -G'
 alias rm='rm -i'
