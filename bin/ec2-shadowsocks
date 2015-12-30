@@ -1,8 +1,7 @@
 #!/bin/bash
 
 
-on_int() { exit 0; }
-trap 'on_int' INT
+trap 'exit 0' INT
 
 CONFIG="$HOME/.shadowsocks.json"
 INSTANCEID="i-478eede2"
