@@ -234,7 +234,6 @@ task :install do
   Rake::Task['install:brew'].invoke
   Rake::Task['install:the_silver_searcher'].invoke
   Rake::Task['install:ctags'].invoke
-  Rake::Task['install:reattach_to_user_namespace'].invoke
   Rake::Task['install:tmux'].invoke
 
   step 'symlink'
