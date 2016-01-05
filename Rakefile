@@ -10,7 +10,7 @@ def brew_install(package, *args)
   elsif options[:requires]
     # brew did not error out, verify tmux is greater than 1.8
     # e.g. brew_tmux_query = 'tmux 1.9a'
-    installed_version = versions.split(/\n/).first.split(' ')[1]
+    installed_version = versions.split(/\n/).first.split(' ').last
     unless version_match?(options[:requires], installed_version)
       sh "brew upgrade #{package} #{args.join ' '}"
     end
@@ -34,7 +34,7 @@ def brew_cask_install(package, *options)
   output = `brew cask info #{package}`
   return unless output.include?('Not installed')
 
-  sh "brew cask install #{package} #{options.join ' '}"
+  sh "brew cask install --binarydir=#{`brew --prefix`.chomp}/bin #{package} #{options.join ' '}"
 end
 
 def step(description)
@@ -217,10 +217,12 @@ end
 COPIED_FILES = filemap(
   'vimrc.local'         => '~/.vimrc.local',
   'vimrc.bundles.local' => '~/.vimrc.bundles.local',
+  'tmux.conf.local'     => '~/.tmux.conf.local'
 )
 
 LINKED_FILES = filemap(
   'vim'           => '~/.vim',
+  'tmux.conf'     => '~/.tmux.conf',
   'vimrc'         => '~/.vimrc',
   'vimrc.bundles' => '~/.vimrc.bundles',
   'screenrc'      => '~/.screenrc',
