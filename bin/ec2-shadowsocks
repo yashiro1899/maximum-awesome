@@ -1,6 +1,8 @@
 #!/bin/bash
 
 
+trap 'exit 0' INT
+
 CONFIG="$HOME/.shadowsocks.json"
 INSTANCEID="i-478eede2"
 describe() {
@@ -17,7 +19,7 @@ echossh() {
     echo -n "ssh"
     echo -n " -o StrictHostKeyChecking=no"
     echo -n " -o UserKnownHostsFile=/dev/null"
-    echo " ec2-user@$publicip"
+    echo " ec2-user@$1"
 }
 
 case "$1" in
@@ -27,7 +29,7 @@ case "$1" in
 
         publicip="null"
         while [ "$publicip" == "null" ]; do
-            sleep 2
+            sleep 5
 
             output=$(describe)
             publicip=$(getip "$output")
