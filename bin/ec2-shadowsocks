@@ -11,6 +11,9 @@ describe() {
 getip() {
     jq '.Reservations[].Instances[].PublicIpAddress' <<< $1
 }
+getstate() {
+    jq '.Reservations[].Instances[].State.Name' <<< $1
+}
 echossh() {
     if [ "$1" == "null" ]; then
         return 1
@@ -27,13 +30,17 @@ case "$1" in
         aws ec2 "start-instances" --instance-ids $INSTANCEID | \
             jq '.StartingInstances[].CurrentState.Name'
 
-        publicip="null"
-        while [ "$publicip" == "null" ]; do
+        while [ true ]; do
             sleep 5
 
             output=$(describe)
-            publicip=$(getip "$output")
-            jq '.Reservations[].Instances[].State.Name' <<< $output
+            state=$(getstate "$output")
+
+            echo $state
+            if [ $state == '"running"' ]; then
+                publicip=$(getip "$output")
+                break
+            fi
         done
         sed -i 's/"server": ".\+$/"server": '$publicip',/' "$CONFIG"
         echossh $publicip;;
@@ -43,7 +50,7 @@ case "$1" in
     status)
         output=$(describe)
         publicip=$(getip "$output")
-        jq '.Reservations[].Instances[].State.Name' <<< $output
+        getstate "$output"
         echossh $publicip;;
     *)
         echo "usage: $0 {start|stop|status}"
