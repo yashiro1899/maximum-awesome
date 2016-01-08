@@ -44,6 +44,7 @@ case "$1" in
             output=$(describe)
             state=$(getstate "$output")
 
+            echo $state
             if [ $state == '"running"' ]; then
                 publicip=$(getip "$output")
                 break
