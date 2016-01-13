@@ -1,22 +1,25 @@
+export EDITOR="/usr/local/bin/vim"
 export HOMEBREW_INSTALL_BADGE=$'\xf0\x9f\x8d\xbc'
 export NODE_PATH="/usr/local/lib/node_modules/"
 export PYTHONSTARTUP="$HOME/.pythonrc"
 
-[[ ${PATH/\/Users/} == $PATH ]] && PATH=$PATH:$HOME/.bin
-export PATH
-export EDITOR="/usr/local/bin/vim"
+[[ ${PATH/\/Users/} == $PATH ]] && export PATH="$PATH:$HOME/.bin"
 
+# aliases
+alias ag="ag --pager 'less -r'"
+alias gu='git commit -am $(date +%s)'
 alias ls='ls -G'
 alias rm='rm -i'
 alias vi="/usr/local/bin/vim"
-alias ag="ag --pager 'less -r'"
 
+# completion
 completion=$(brew --prefix)/etc/bash_completion
 [[ -f $completion ]] && . $completion
+[[ -n "$(which aws_completer)" ]] && complete -C aws_completer aws
 
+# git
 GIT_PS1_SHOWCOLORHINTS=1
 PROMPT_COMMAND='__git_ps1 "[\u@\h \W" "]\$ "'
-complete -C aws_completer aws
 
 # colorful less
 export LESS_TERMCAP_mb=$'\E[01;31m'
