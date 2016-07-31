@@ -28,3 +28,15 @@ export LESS_TERMCAP_me=$'\E[0m'
 export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[04;38;5;111m'
+
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+pc() {
+    proxychains4 $@ 2> /dev/null
+}
+
+_pc_completion() {
+    _command $1 $2 $3
+}
+complete -F _pc_completion pc
