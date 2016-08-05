@@ -33,7 +33,7 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
 pc() {
-    proxychains4 $@ 2> /dev/null
+    proxychains4 $@ 2>&1 | sed '1,2d'
 }
 
 _pc_completion() {
