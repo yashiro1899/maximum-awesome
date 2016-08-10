@@ -32,11 +32,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;111m'
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
-pc() {
-    proxychains4 $@ 2>&1 | sed '1,2d'
-}
-
 _pc_completion() {
     _command $1 $2 $3
 }
-complete -F _pc_completion pc
+complete -F _pc_completion proxychains4
