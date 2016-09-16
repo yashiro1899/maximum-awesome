@@ -37,3 +37,4 @@ _pc_completion() {
     _command $1 $2 $3
 }
 complete -F _pc_completion proxychains4
+complete -F _ssh sshx
