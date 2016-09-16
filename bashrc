@@ -11,6 +11,7 @@ alias gu='git commit -am $(date +%s)'
 alias ls='ls -G'
 alias rm='rm -i'
 alias vi="/usr/local/bin/vim"
+alias sshx="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 
 # completion
 completion=$(brew --prefix)/etc/bash_completion
