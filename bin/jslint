@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /*property
-    argv, charCodeAt, column, devel, error, es6, exit, for, forEach, join, keys, line, log, message, node, ok, property, readFileSync, replace, slice, sort, this, warnings, white
+    argv, browser, charCodeAt, column, devel, error, es6, exit, for, forEach, join, keys, line, log, message, node, ok, property, readFileSync, replace, slice, sort, this, warnings, white
 */
 
 
@@ -25,12 +25,13 @@ var filename = process.argv[2];
 var script = fs.readFileSync(filename, 'UTF8');
 
 var result = jslint(preprocessScript(script), {
-    es6   : true,
-    for   : true,
-    node  : true,
-    this  : true,
-    devel : true,
-    white : true
+    browser : true,
+    es6     : true,
+    for     : true,
+    node    : true,
+    this    : true,
+    devel   : true,
+    white   : true
 });
 
 if (process.argv[3] !== undefined) {
