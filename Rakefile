@@ -230,7 +230,7 @@ LINKED_FILES = filemap(
 )
 
 BIN_FIELS = filemap(
-  'bin/256color.pl ' => '~/.bin/256color.pl ',
+  'bin/256color.pl' => '~/.bin/256color.pl',
   'bin/beautifiers' => '~/.bin/beautifiers',
   'bin/ec2-shadowsocks' => '~/.bin/ec2-shadowsocks',
   'bin/jslint' => '~/.bin/jslint',
