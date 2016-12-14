@@ -14,7 +14,7 @@ if [ $# -gt 1 ]; then
         shift
     done
 elif [ $# -gt 0 ]; then
-    files=$(git show $1 --name-only --oneline | sort | uniq)
+    files=$(git show $1 --name-only --oneline | sort -u)
 
     if [ 0 -ne $? ]; then exit 1; fi
     cd "$(git rev-parse --show-toplevel)"
