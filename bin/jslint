@@ -1,53 +1,56 @@
 #!/usr/bin/env node
 
 /*property
-    argv, browser, charCodeAt, column, devel, error, es6, exit, for, forEach, join, keys, line, log, message, node, ok, property, readFileSync, replace, slice, sort, this, warnings, white
+    argv, bitwise, charCodeAt, column, devel, error, es6, exit, for, forEach, join, keys, line, log, message, node, ok, property, readFileSync, replace, single, slice, sort, this, warnings, white
 */
-
-
 'use strict';
 const fs = require("fs");
 const jslint = require("./jslint.js");
 
 function preprocessScript(script) {
-    // Fix UTF8 with BOM
-    if (script.charCodeAt(0) === 0xFEFF) {
-        script = script.slice(1);
-    }
+  // Fix UTF8 with BOM
+  if (script.charCodeAt(0) === 0xFEFF) {
+    script = script.slice(1);
+  }
 
-    // remove shebang: replace it with empty line
-    script = script.replace(/^#!.*/, "");
+  // remove shebang: replace it with empty line
+  script = script.replace(/^#!.*/, "");
 
-    return script;
+  // remove generator
+  // script = script.replace(/function\*/g, "function");
+  // script = script.replace(/yield\*?/g, "");
+
+  return script;
 }
 
 var filename = process.argv[2];
 var script = fs.readFileSync(filename, 'UTF8');
 
 var result = jslint(preprocessScript(script), {
-    browser : true,
-    es6     : true,
-    for     : true,
-    node    : true,
-    this    : true,
-    devel   : true,
-    white   : true
+  bitwise: true,
+  es6: true,
+  for: true,
+  node: true,
+  single: true,
+  this: true,
+  devel: true,
+  white: true
 });
 
 if (process.argv[3] !== undefined) {
-    console.log("/*property\n    %s\n*/",
-        Object.keys(result.property)
-        .sort()
-        .join(', '));
-    process.exit(0);
+  console.log("/*property\n    %s\n*/",
+    Object.keys(result.property)
+    .sort()
+    .join(', '));
+  process.exit(0);
 }
 
 if (result.ok) {
-    process.exit(0);
+  process.exit(0);
 } else {
-    result.warnings.forEach(function (e) {
-        // `fudge` is not work in nodejs
-        console.error((e.line + 1) + ':' + e.column + ': ' + e.message);
-    });
-    process.exit(1);
+  result.warnings.forEach(function (e) {
+    // `fudge` is not work in nodejs
+    console.error((e.line + 1) + ':' + e.column + ': ' + e.message);
+  });
+  process.exit(1);
 }

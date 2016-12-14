@@ -229,6 +229,14 @@ LINKED_FILES = filemap(
   'bashrc'        => '~/.bashrc'
 )
 
+BIN_FIELS = filemap(
+  'bin/256color.pl ' => '~/.bin/256color.pl ',
+  'bin/beautifiers' => '~/.bin/beautifiers',
+  'bin/ec2-shadowsocks' => '~/.bin/ec2-shadowsocks',
+  'bin/jslint' => '~/.bin/jslint',
+  'bin/vp' => '~/.bin/vp',
+)
+
 desc 'Install these config files.'
 task :install do
   Rake::Task['install:brew'].invoke
@@ -245,10 +253,13 @@ task :install do
   COPIED_FILES.each do |orig, copy|
     cp orig, copy, :verbose => true unless File.exist?(copy)
   end
+
   unless File.exists?(File.expand_path('~/.bin'))
     FileUtils.mkdir_p(File.expand_path('~/.bin'))
   end
-  cp_r Dir.glob('bin/*'), File.expand_path('~/.bin'), :verbose => true
+  BIN_FIELS.each do |orig, link|
+    link_file orig, link
+  end
 
   # Install Vundle and bundles
   Rake::Task['install:vundle'].invoke

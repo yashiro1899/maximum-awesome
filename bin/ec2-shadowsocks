@@ -6,7 +6,7 @@ trap 'exit 0' INT
 CONFIG="$HOME/.shadowsocks.json"
 INSTANCEID="i-478eede2"
 describe() {
-    aws ec2 describe-instances --instance-ids $INSTANCEID
+    proxychains4 aws ec2 describe-instances --instance-ids $INSTANCEID 2> /dev/null
 }
 getip() {
     jq '.Reservations[].Instances[].PublicIpAddress' <<< $1
@@ -19,9 +19,7 @@ echossh() {
         return 1
     fi
 
-    echo -n "ssh"
-    echo -n " -o StrictHostKeyChecking=no"
-    echo -n " -o UserKnownHostsFile=/dev/null"
+    echo -n "sshx"
     echo " ec2-user@$1"
 }
 hosts() {
@@ -29,13 +27,13 @@ hosts() {
         return 1
     fi
 
-    sudo sed -i '' '/icewhite\.us/d' /etc/hosts
-    sudo bash -c "echo $1 icewhite.us >> /etc/hosts"
+    # sudo sed -i '' '/icewhite\.us/d' /etc/hosts
+    # sudo bash -c "echo $1 icewhite.us >> /etc/hosts"
 }
 
 case "$1" in
     start)
-        aws ec2 "start-instances" --instance-ids $INSTANCEID | \
+        proxychains4 aws ec2 "start-instances" --instance-ids $INSTANCEID 2> /dev/null | \
             jq '.StartingInstances[].CurrentState.Name'
 
         while [ true ]; do
@@ -54,7 +52,7 @@ case "$1" in
         hosts $publicip
         echossh $publicip;;
     stop)
-        aws ec2 "stop-instances" --instance-ids $INSTANCEID | \
+        proxychains4 aws ec2 "stop-instances" --instance-ids $INSTANCEID 2> /dev/null | \
             jq '.StoppingInstances[].CurrentState.Name';;
     status)
         output=$(describe)

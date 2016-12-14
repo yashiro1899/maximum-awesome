@@ -5,43 +5,41 @@ var type = process.argv[2];
 var result = [];
 
 function beautify(content) {
-    switch (type) {
-    case 'css':
-        content = require("js-beautify")
-            .css(content);
-        break;
-    case 'javascript':
-    case 'json':
-        content = require("js-beautify")(content, {
-            jslint_happy: true,
-            break_chained_methods: true,
-            keep_array_indentation: true
-        });
-        break;
-    default:
-        break;
-    }
+  switch (type) {
+  case 'css':
+    content = require("js-beautify")
+      .css(content);
+    break;
+  case 'javascript':
+  case 'json':
+    content = require("js-beautify")(content, {
+      indent_size: 2,
+      jslint_happy: true,
+      keep_array_indentation: true
+    });
+    break;
+  }
 
-    process.stdout.write(content);
+  process.stdout.write(content);
 }
 
 if (type === "java") {
-    require('child_process')
-        .spawn('uncrustify', [
+  require('child_process')
+    .spawn('uncrustify', [
             '-c',
             '/usr/local/etc/uncrustify.cfg',
             '-l',
             'java',
             '-q'
         ], {
-            stdio: 'inherit'
-        });
+      stdio: 'inherit'
+    });
 } else {
-    process.stdin.on('data', function (chunk) {
-        result.push(chunk);
-    });
-    process.stdin.on('end', function () {
-        result = Buffer.concat(result);
-        beautify(result.toString());
-    });
+  process.stdin.on('data', function (chunk) {
+    result.push(chunk);
+  });
+  process.stdin.on('end', function () {
+    result = Buffer.concat(result);
+    beautify(result.toString());
+  });
 }
