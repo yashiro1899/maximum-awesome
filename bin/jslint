@@ -23,9 +23,9 @@ function preprocessScript(script) {
   // remove shebang: replace it with empty line
   script = script.replace(/^#!.*/, "");
 
-  // remove generator
-  // script = script.replace(/function\*/g, "function");
-  // script = script.replace(/yield\*?/g, "");
+  // hack generator
+  script = script.replace(/function\*/g, "function");
+  script = script.replace(/yield\*?/g, "");
 
   return script;
 }
