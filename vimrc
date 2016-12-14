@@ -37,17 +37,20 @@ set listchars=tab:▸\ ,trail:▫
 set number                                    " show line numbers
 set ruler                                     " show where you are
 set scrolloff=3                               " show context above/below cursorline
-set shiftwidth=4                              " normal mode indentation commands use 4 spaces
+set shiftwidth=2                              " normal mode indentation commands use 2 spaces
 set showcmd
 set smartcase                                 " case-sensitive search if any caps
-set softtabstop=4                             " insert mode tab and backspace use 4 spaces
+set softtabstop=2                             " insert mode tab and backspace use 2 spaces
 set splitright
-set tabstop=4                                 " actual tabs occupy 8 characters
+set tabstop=8                                 " actual tabs occupy 8 characters
 set wildignore=log/**,target/**,tmp/**,*.rbc
 set wildmenu                                  " show a navigable menu for tab completion
 
 " Enable basic mouse behavior such as resizing buffers.
 set mouse=a
+if exists('$TMUX')  " Support resizing in tmux
+  set ttymouse=xterm2
+endif
 
 " keyboard shortcuts
 let mapleader=','
@@ -93,6 +96,15 @@ endif
 
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
+
+" Fix Cursor in TMUX
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
 " reset colors
 autocmd VimLeave * !echo -ne '\033[0m'
