@@ -1,11 +1,18 @@
 #!/usr/bin/env node
 
 /*property
-    argv, bitwise, charCodeAt, column, devel, error, es6, exit, for, forEach, join, keys, line, log, message, node, ok, property, readFileSync, replace, single, slice, sort, this, warnings, white
+    argv, bitwise, charCodeAt, column, createContext, devel, error, es6, exit, for, forEach, join, jslint, keys, line, log, message, node, ok, property, readFileSync, replace, runInContext, single, slice, sort, this, warnings, white
 */
 'use strict';
 const fs = require("fs");
-const jslint = require("./jslint.js");
+const path = require('path');
+const vm = require('vm');
+
+const sandbox = {};
+const jslintjs = path.join(__dirname, '../JSLint/jslint.js');
+vm.createContext(sandbox);
+vm.runInContext(fs.readFileSync(jslintjs), sandbox);
+const jslint = sandbox.jslint;
 
 function preprocessScript(script) {
   // Fix UTF8 with BOM
