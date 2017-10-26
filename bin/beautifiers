@@ -14,8 +14,8 @@ function beautify(content) {
   case 'json':
     content = require("js-beautify")(content, {
       indent_size: 2,
-      jslint_happy: true,
-      keep_array_indentation: true
+      keep_array_indentation: true,
+      space_after_anon_function: false
     });
     break;
   }

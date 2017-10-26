@@ -6,7 +6,7 @@ trap 'exit 0' INT
 CONFIG="$HOME/.shadowsocks.json"
 INSTANCEID="i-478eede2"
 describe() {
-    proxychains4 aws ec2 describe-instances --instance-ids $INSTANCEID 2> /dev/null
+    aws ec2 describe-instances --instance-ids $INSTANCEID 2> /dev/null
 }
 getip() {
     jq '.Reservations[].Instances[].PublicIpAddress' <<< $1
@@ -33,7 +33,7 @@ hosts() {
 
 case "$1" in
     start)
-        proxychains4 aws ec2 "start-instances" --instance-ids $INSTANCEID 2> /dev/null | \
+        aws ec2 "start-instances" --instance-ids $INSTANCEID 2> /dev/null | \
             jq '.StartingInstances[].CurrentState.Name'
 
         while [ true ]; do
@@ -52,7 +52,7 @@ case "$1" in
         hosts $publicip
         echossh $publicip;;
     stop)
-        proxychains4 aws ec2 "stop-instances" --instance-ids $INSTANCEID 2> /dev/null | \
+        aws ec2 "stop-instances" --instance-ids $INSTANCEID 2> /dev/null | \
             jq '.StoppingInstances[].CurrentState.Name';;
     status)
         output=$(describe)
