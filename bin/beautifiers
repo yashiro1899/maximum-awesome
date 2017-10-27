@@ -1,44 +1,37 @@
 #!/usr/bin/env node
 
-'use strict';
-var type = process.argv[2];
-var result = [];
+"use strict";
+
+const cp = require("child_process");
+const prettier = require("prettier");
+const type = process.argv[2];
 
 function beautify(content) {
   switch (type) {
-  case 'css':
-    content = require("js-beautify")
-      .css(content);
-    break;
-  case 'javascript':
-  case 'json':
-    content = require("js-beautify")(content, {
-      indent_size: 2,
-      keep_array_indentation: true,
-      space_after_anon_function: false
-    });
-    break;
+    case "javascript":
+    case "json":
+      content = prettier.format(content);
+      break;
   }
 
   process.stdout.write(content);
 }
 
 if (type === "java") {
-  require('child_process')
-    .spawn('uncrustify', [
-            '-c',
-            '/usr/local/etc/uncrustify.cfg',
-            '-l',
-            'java',
-            '-q'
-        ], {
-      stdio: 'inherit'
-    });
+  cp.spawn(
+    "uncrustify",
+    ["-c", "/usr/local/etc/uncrustify.cfg", "-l", "java", "-q"],
+    {
+      stdio: "inherit"
+    }
+  );
 } else {
-  process.stdin.on('data', function (chunk) {
+  let result = [];
+
+  process.stdin.on("data", function(chunk) {
     result.push(chunk);
   });
-  process.stdin.on('end', function () {
+  process.stdin.on("end", function() {
     result = Buffer.concat(result);
     beautify(result.toString());
   });
