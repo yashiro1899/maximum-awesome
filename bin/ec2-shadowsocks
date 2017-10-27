@@ -4,7 +4,7 @@
 trap 'exit 0' INT
 
 CONFIG="$HOME/.shadowsocks.json"
-INSTANCEID="i-478eede2"
+INSTANCEID="i-038ff40dd13f1fb91"
 describe() {
     aws ec2 describe-instances --instance-ids $INSTANCEID 2> /dev/null
 }
