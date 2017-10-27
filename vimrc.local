@@ -44,11 +44,7 @@ let g:user_emmet_leader_key='<C-T>'
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.md set spell
 
-" jslint & csslint
-autocmd FileType javascript set makeprg=jslint\ %
-autocmd FileType javascript set errorformat=%l:%c:\ %m
-autocmd FileType javascript inoremap <F9> <C-o>:make<CR>
-autocmd FileType javascript nnoremap <F9> :make<CR>
+" beautifiers
 autocmd FileType,Vimenter,TabEnter * execute ":vnoremap <F10> :!beautifiers " . &filetype . "<CR>"
 autocmd FileType,Vimenter,TabEnter * execute ":nnoremap <F10> ggVG:!beautifiers " . &filetype . "<CR>"
 
