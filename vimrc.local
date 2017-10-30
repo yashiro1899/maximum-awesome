@@ -34,8 +34,9 @@ endfunction
 command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
 silent! autocmd VimEnter * RemoveConflictingAlignMaps
 
-" commentary
+" commentary & dictionary
 autocmd FileType nginx set commentstring=#\ %s
+autocmd FileType javascript set dictionary+=~/.vim/dict/node
 
 " emmet
 let g:user_emmet_leader_key='<C-T>'

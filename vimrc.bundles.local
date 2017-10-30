@@ -1,3 +1,4 @@
+Plugin 'guileen/vim-node-dict'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'mattn/emmet-vim'
 Plugin 'moll/vim-node'
