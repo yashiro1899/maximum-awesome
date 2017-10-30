@@ -1,5 +1,5 @@
+Plugin 'jelera/vim-javascript-syntax'
 Plugin 'mattn/emmet-vim'
-Plugin 'pangloss/vim-javascript'
 Plugin 'rizzatti/dash.vim'
 Plugin 'rizzatti/funcoo.vim'
 Plugin 'vim-scripts/nginx.vim'

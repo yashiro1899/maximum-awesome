@@ -43,6 +43,7 @@ let g:user_emmet_leader_key='<C-T>'
 " filetypes
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.md set spell
+autocmd BufRead,BufNewFile .eslintrc set filetype=json
 
 " beautifiers
 autocmd FileType,Vimenter,TabEnter * execute ":vnoremap <F10> :!beautifiers " . &filetype . "<CR>"
