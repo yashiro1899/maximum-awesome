@@ -1,5 +1,7 @@
+Plugin 'jamescarr/snipmate-nodejs'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'mattn/emmet-vim'
+Plugin 'moll/vim-node'
 Plugin 'rizzatti/dash.vim'
 Plugin 'rizzatti/funcoo.vim'
 Plugin 'vim-scripts/nginx.vim'
