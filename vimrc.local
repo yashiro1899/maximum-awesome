@@ -13,7 +13,8 @@ if (&t_Co == 256 || has('gui_running'))
   let g:solarized_termcolors = 256
   let g:solarized_termtrans  = 1  " for OSX terminal
   set background=dark
-  colorscheme solarized
+  " colorscheme solarized
+  colorscheme mango
 else
   colorscheme desert
 endif
@@ -36,6 +37,7 @@ silent! autocmd VimEnter * RemoveConflictingAlignMaps
 
 " commentary & dictionary
 autocmd FileType nginx set commentstring=#\ %s
+autocmd FileType javascript set dictionary+=~/.vim/dict/javascript
 autocmd FileType javascript set dictionary+=~/.vim/dict/node
 
 " emmet
