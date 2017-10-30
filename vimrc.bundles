@@ -4,9 +4,12 @@
 " Please create ~/.vimrc.bundles.local and add any extra bundles you want there
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ervandew/supertab'
+Plugin 'garbas/vim-snipmate'
 Plugin 'majutsushi/tagbar'
+Plugin 'marcweber/vim-addon-mw-utils'
 Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'tyru/fencview.vim'
