@@ -9,10 +9,14 @@ const type = process.argv[2];
 function beautify(content) {
   switch (type) {
     case 'javascript':
-    case 'json':
       content = prettier.format(content, {
         singleQuote: true,
         trailingComma: 'es5',
+      });
+      break;
+    case 'json':
+      content = prettier.format(content, {
+        parser: 'json',
       });
       break;
   }
