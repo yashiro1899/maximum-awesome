@@ -45,11 +45,12 @@ let g:user_emmet_leader_key='<C-T>'
 " filetypes
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.md set spell
-autocmd BufRead,BufNewFile .eslintrc set filetype=json
+autocmd BufRead,BufNewFile .eslintrc,.prettierrc set filetype=json
 
 " beautifiers
-autocmd FileType,Vimenter,TabEnter * execute ":vnoremap <F10> :!beautifiers " . &filetype . "<CR>"
-autocmd FileType,Vimenter,TabEnter * execute ":nnoremap <F10> ggVG:!beautifiers " . &filetype . "<CR>"
+autocmd BufRead,BufNewFile *.js vnoremap <F10> :!prettier --stdin<CR>
+autocmd BufRead,BufNewFile *.js,*.json nnoremap <F10> :!clear && prettier --write %<CR><CR>
+autocmd BufRead,BufNewFile .eslintrc,.prettierrc nnoremap <F10> :!clear && prettier --write --parser json %<CR><CR>
 
 " dash
 nmap <leader>h <Plug>DashSearch
