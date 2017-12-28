@@ -10,6 +10,7 @@ filename=${@:$OPTIND:1}
 
 case $filetype in
   java)
+    if [[ -f "$filename" ]]; then clear; fi
     uncrustify \
       -c /usr/local/etc/uncrustify.cfg \
       -l $filetype \
