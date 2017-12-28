@@ -33,6 +33,14 @@ case $filetype in
     fi
     ;;
 
+  python)
+    if [[ -f "$filename" ]]; then
+      clear && autopep8 -i $filename
+    else
+      autopep8 -
+    fi
+    ;;
+
   sh)
     if [[ -f "$filename" ]]; then
       clear
