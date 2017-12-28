@@ -1,3 +1,4 @@
+Plugin 'goatslacker/mango.vim'
 Plugin 'guileen/vim-node-dict'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'mattn/emmet-vim'
