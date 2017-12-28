@@ -54,3 +54,4 @@ case $filetype in
     clear
     ;;
 esac
+jo filetype=$filetype filename=$filename > /dev/stderr
