@@ -1,0 +1,38 @@
+#!/bin/bash
+
+getopts t: opt
+if [[ $opt = 't' ]]; then
+  filetype=$OPTARG
+else
+  exit 0
+fi
+filename=${@:$OPTIND:1}
+
+case $filetype in
+  java)
+    uncrustify \
+      -c /usr/local/etc/uncrustify.cfg \
+      -l $filetype \
+      --no-backup \
+      -q \
+      $filename
+    ;;
+
+  javascript)
+    if [[ -f "$filename" ]]; then
+      clear && prettier --write $filename
+    else
+      prettier --stdin
+    fi
+    ;;
+
+  json)
+    if [[ -f "$filename" ]]; then
+      clear && prettier --write --parser json $filename
+    fi
+    ;;
+
+  *)
+    exit 0
+    ;;
+esac

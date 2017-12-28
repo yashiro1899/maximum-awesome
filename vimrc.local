@@ -48,9 +48,8 @@ autocmd BufRead,BufNewFile *.md set spell
 autocmd BufRead,BufNewFile .eslintrc,.prettierrc set filetype=json
 
 " beautifiers
-autocmd BufRead,BufNewFile *.js vnoremap <F10> :!prettier --stdin<CR>
-autocmd BufRead,BufNewFile *.js,*.json nnoremap <F10> :!clear && prettier --write %<CR>
-autocmd BufRead,BufNewFile .eslintrc,.prettierrc nnoremap <F10> :!clear && prettier --write --parser json %<CR>
+autocmd FileType,Vimenter,TabEnter * execute ":vnoremap <F10> :!beautifiers -t".&filetype."<CR>"
+autocmd FileType,Vimenter,TabEnter * execute ":nnoremap <F10> :!beautifiers -t".&filetype." %<CR>"
 
 " dash
 nmap <leader>h <Plug>DashSearch
