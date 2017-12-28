@@ -33,6 +33,15 @@ case $filetype in
     fi
     ;;
 
+  sh)
+    if [[ -f "$filename" ]]; then
+      clear
+    else
+      filename='-'
+    fi
+    beautysh -i2 -f$filename
+    ;;
+
   *)
     exit 0
     ;;
