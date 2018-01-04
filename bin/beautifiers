@@ -55,5 +55,7 @@ case $filetype in
     ;;
 esac
 
-jo filetype=$filetype filename=$filename >&2
-echo
+if [[ -f "$filename" ]]; then
+  jo filetype=$filetype filename=$filename >&2
+  echo
+fi
