@@ -9,14 +9,15 @@ set colorcolumn=81
 "nmap <leader>hl :let @/ = ""<CR>
 
 " gui settings
-if (&t_Co == 256 || has('gui_running'))
-  let g:solarized_termcolors = 256
-  let g:solarized_termtrans  = 1  " for OSX terminal
-  set background=dark
-  colorscheme solarized
-else
-  colorscheme desert
-endif
+
+" let g:solarized_termcolors = 256
+" let g:solarized_termtrans = 1
+" set background=dark
+" colorscheme solarized
+
+let g:molokai_original = 1
+let g:rehash256 = 1
+colorscheme molokai
 
 " Disambiguate ,a & ,t from the Align plugin, making them fast again.
 "
@@ -48,8 +49,8 @@ autocmd BufRead,BufNewFile *.md set spell
 autocmd BufRead,BufNewFile .eslintrc,.prettierrc set filetype=json
 
 " beautifiers
-autocmd FileType,Vimenter,TabEnter * execute ":vnoremap <F10> :!beautifiers -t".&filetype."<CR>"
-autocmd FileType,Vimenter,TabEnter * execute ":nnoremap <F10> :!beautifiers -t".&filetype." %<CR>"
+autocmd FileType,Vimenter,TabEnter,BufEnter * execute ":vnoremap <F10> :!beautifiers -t".&filetype."<CR>"
+autocmd FileType,Vimenter,TabEnter,BufEnter * execute ":nnoremap <F10> :!beautifiers -t".&filetype." %<CR>"
 
 " dash
 nmap <leader>h <Plug>DashSearch
