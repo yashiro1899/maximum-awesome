@@ -49,8 +49,8 @@ autocmd BufRead,BufNewFile *.md set spell
 autocmd BufRead,BufNewFile .eslintrc,.prettierrc set filetype=json
 
 " beautifiers
-autocmd BufEnter * execute ":vnoremap <F10> :!beautifiers -t".&filetype."<CR>"
-autocmd BufEnter * execute ":nnoremap <F10> :!beautifiers -t".&filetype." %<CR>"
+autocmd BufEnter,FileType * execute ":vnoremap <F10> :!beautifiers -t".&filetype."<CR>"
+autocmd BufEnter,FileType * execute ":nnoremap <F10> :!beautifiers -t".&filetype." %<CR>"
 
 " dash
 nmap <leader>h <Plug>DashSearch
