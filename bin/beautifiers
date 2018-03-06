@@ -9,6 +9,14 @@ fi
 filename=${@:$OPTIND:1}
 
 case $filetype in
+  go)
+    if [[ -f "$filename" ]]; then
+      clear && gofmt -w $filename
+    else
+      gofmt
+    fi
+    ;;
+
   java)
     if [[ -f "$filename" ]]; then clear; fi
     uncrustify \
