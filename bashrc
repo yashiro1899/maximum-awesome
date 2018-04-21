@@ -3,6 +3,7 @@ export HOMEBREW_INSTALL_BADGE=$'\xf0\x9f\x8d\xbc'
 export NODE_PATH="/usr/local/lib/node_modules/"
 export PYTHONSTARTUP="$HOME/.pythonrc"
 export PATH="/usr/local/opt/mongodb-osx-x86_64-3.6.2/bin:$PATH:$HOME/.bin"
+export PATH="$HOME/go/bin:$PATH"
 
 # aliases
 alias ag="ag --pager 'less -r'"

@@ -57,3 +57,18 @@ nmap <leader>h <Plug>DashSearch
 let g:dash_map={
 \ 'coffee' : ['javascript', 'nodejs']
 \ }
+
+" go
+let g:go_def_mode = "godef"
+let g:go_fmt_command = "goimports"
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_types = 1
+autocmd BufEnter,FileType *.go nnoremap <F5> :!clear<CR>:GoRun<CR>
+autocmd BufEnter,FileType *.go nnoremap <F6> :GoTest<CR>
+autocmd BufEnter,FileType *.go nnoremap <F9> :GoMetaLinter<CR>
+autocmd BufEnter,FileType *.go nnoremap <leader>a :GoAlternate<CR>
+set completeopt-=preview " suppress gocode top window

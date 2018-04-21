@@ -54,18 +54,18 @@ if exists('$TMUX')  " Support resizing in tmux
 endif
 
 " keyboard shortcuts
-let mapleader=','
+let mapleader = ','
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>e :FencAutoDetect<CR>
 nnoremap <leader>l :NERDTreeFind<CR>
 nnoremap <leader>n :let @/ = ""<CR>
 nnoremap <leader>t :TagbarToggle<CR>
 nnoremap <leader><space> :retab<CR>:call whitespace#strip_trailing()<CR>
-noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 nnoremap <C-n> :tabnext<CR>
 nnoremap <C-p> :tabprevious<CR>
 inoremap <C-p> <Up>
@@ -88,7 +88,8 @@ noremap <silent> <leader>F :set foldmethod=manual<CR>zR<CR>
 cnoremap w!! %!sudo tee > /dev/null %
 
 " plugin settings
-let g:NERDSpaceDelims=1
+let g:NERDSpaceDelims = 1
+let g:SuperTabDefaultCompletionType = "context"
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
@@ -121,7 +122,7 @@ autocmd BufReadPost *
 if filereadable(expand("~/.vimrc.local"))
   " In your .vimrc.local, you might like:
   "
-  " set autowrite
+  set autowrite
   " set nocursorline
   " set nowritebackup
   " set whichwrap+=<,>,h,l,[,] " Wrap arrow keys between lines
