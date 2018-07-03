@@ -89,7 +89,6 @@ cnoremap w!! %!sudo tee > /dev/null %
 
 " plugin settings
 let g:NERDSpaceDelims = 1
-let g:SuperTabDefaultCompletionType = "context"
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')

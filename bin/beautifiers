@@ -31,7 +31,7 @@ case $filetype in
     if [[ -f "$filename" ]]; then
       clear && prettier --write $filename
     else
-      prettier --stdin
+      prettier --stdin --parser flow
     fi
     ;;
 

@@ -1,5 +1,7 @@
-vim/.netrwhist
-*.swp
 *.pyc
+*.swp
+vim/.netrwhist
+vim/snippets/
+vim/view/
 
 .DS_Store
