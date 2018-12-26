@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+export HTTP_PROXY='http://127.0.0.1:8087'
 trap 'exit 0' INT
 
 CONFIG="$HOME/.shadowsocks.json"
@@ -43,7 +44,7 @@ case "$1" in
             state=$(getstate "$output")
 
             echo $state
-            if [ $state == '"running"' ]; then
+            if [ "$state" == '"running"' ]; then
                 publicip=$(getip "$output")
                 break
             fi

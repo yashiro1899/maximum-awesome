@@ -29,7 +29,7 @@ case $filetype in
 
   javascript)
     if [[ -f "$filename" ]]; then
-      clear && prettier --write $filename
+      clear && prettier --write $filename --parser flow
     else
       prettier --stdin --parser flow
     fi
@@ -38,6 +38,14 @@ case $filetype in
   json)
     if [[ -f "$filename" ]]; then
       clear && prettier --write --parser json $filename
+    fi
+    ;;
+
+  proto)
+    if [[ -f "$filename" ]]; then
+      clear && clang-format -i $filename
+    else
+      clang-format
     fi
     ;;
 
