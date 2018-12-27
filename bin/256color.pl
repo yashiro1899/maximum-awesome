@@ -56,7 +56,7 @@ for ($green = 0; $green < 6; $green++) {
 
 
 # now the grayscale ramp
-print "Grayscale ramp:\n";
+print "\nGrayscale ramp:\n";
 for ($color = 232; $color < 256; $color++) {
     print "\x1b[48;5;${color}m  ";
 }
