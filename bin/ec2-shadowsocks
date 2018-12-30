@@ -31,6 +31,14 @@ hosts() {
     # sudo sed -i '' '/icewhite\.us/d' /etc/hosts
     # sudo bash -c "echo $1 icewhite.us >> /etc/hosts"
 }
+ut() {
+    ssh \
+      -o ConnectTimeout=5 \
+      -o StrictHostKeyChecking=no \
+      -o UserKnownHostsFile=/dev/null \
+      ec2-user@$(jq -r '.server' $CONFIG) uptime 2> /dev/null
+    echo
+}
 
 case "$1" in
     start)
@@ -53,9 +61,12 @@ case "$1" in
         hosts $publicip
         echossh $publicip;;
     stop)
+        ut
         aws ec2 "stop-instances" --instance-ids $INSTANCEID 2> /dev/null | \
             jq '.StoppingInstances[].CurrentState.Name';;
     status)
+        ut
+
         output=$(describe)
         publicip=$(getip "$output")
         getstate "$output"
