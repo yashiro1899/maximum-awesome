@@ -73,4 +73,4 @@ autocmd FileType go nnoremap <F5> :!clear<CR>:GoRun<CR>
 autocmd FileType go nnoremap <F6> :GoTest<CR>
 autocmd FileType go nnoremap <F9> :GoMetaLinter<CR>
 autocmd FileType go nnoremap <leader>a :GoAlternate<CR>
-autocmd FileType go nnoremap <silent> <leader>j <Plug>(go-def-tab)
+autocmd FileType go nmap <leader>j <Plug>(go-def-tab)
