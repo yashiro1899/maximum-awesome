@@ -36,7 +36,7 @@ ut() {
       -o ConnectTimeout=5 \
       -o StrictHostKeyChecking=no \
       -o UserKnownHostsFile=/dev/null \
-      ec2-user@$(jq -r '.server' $CONFIG) uptime 2> /dev/null
+      ec2-user@$(jq -r '.server' $CONFIG) uptime 2> /dev/null | cut -c 11-
     echo
 }
 

@@ -39,6 +39,7 @@ silent! autocmd VimEnter * RemoveConflictingAlignMaps
 autocmd FileType nginx set commentstring=#\ %s
 autocmd FileType javascript set dictionary+=~/.vim/dict/javascript
 autocmd FileType javascript set dictionary+=~/.vim/dict/node
+autocmd FileType javascript nnoremap <F5> :!clear<CR>:!node %<CR>
 
 " emmet
 let g:user_emmet_leader_key='<C-T>'
@@ -47,6 +48,7 @@ let g:user_emmet_leader_key='<C-T>'
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.md set spell
 autocmd BufRead,BufNewFile .eslintrc,.prettierrc set filetype=json
+autocmd BufRead,BufNewFile *.gtpl set filetype=gohtmltmpl
 
 " beautifiers
 autocmd BufEnter,FileType * execute ":vnoremap <F10> :!beautifiers -t".&filetype."<CR>"
@@ -54,21 +56,21 @@ autocmd BufEnter,FileType * execute ":nnoremap <F10> :!beautifiers -t".&filetype
 
 " dash
 nmap <leader>h <Plug>DashSearch
-let g:dash_map={
-\ 'coffee' : ['javascript', 'nodejs']
-\ }
 
 " go
+let g:SuperTabDefaultCompletionType = "context"
 let g:go_def_mode = "godef"
 let g:go_fmt_command = "goimports"
+let g:go_fmt_experimental = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_types = 1
-autocmd BufEnter,FileType *.go nnoremap <F5> :!clear<CR>:GoRun<CR>
-autocmd BufEnter,FileType *.go nnoremap <F6> :GoTest<CR>
-autocmd BufEnter,FileType *.go nnoremap <F9> :GoMetaLinter<CR>
-autocmd BufEnter,FileType *.go nnoremap <leader>a :GoAlternate<CR>
-set completeopt-=preview " suppress gocode top window
+autocmd FileType go set completeopt-=preview " suppress gocode top window
+autocmd FileType go nnoremap <F5> :!clear<CR>:GoRun<CR>
+autocmd FileType go nnoremap <F6> :GoTest<CR>
+autocmd FileType go nnoremap <F9> :GoMetaLinter<CR>
+autocmd FileType go nnoremap <leader>a :GoAlternate<CR>
+autocmd FileType go nnoremap <silent> <leader>j <Plug>(go-def-tab)
