@@ -23,7 +23,7 @@ alias ls='ls -G'
 alias rm='rm -i'
 alias vi="/usr/local/bin/vim"
 alias sshx="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
-alias myCourse='mycli -uroot -hlocalhost course'
+alias myCourse='mycli -uroot -hlocalhost bloomberg'
 
 # completion
 completion=$(/usr/local/bin/brew --prefix)/etc/bash_completion
@@ -58,3 +58,4 @@ source $HOME/.gvm/scripts/gvm
 
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
+export GOPATH="$HOME/go"

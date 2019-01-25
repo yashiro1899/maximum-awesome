@@ -1,7 +1,6 @@
 #!/bin/bash
 
 
-export HTTP_PROXY='http://127.0.0.1:8087'
 trap 'exit 0' INT
 
 CONFIG="$HOME/.shadowsocks.json"
