@@ -58,7 +58,7 @@ autocmd BufEnter,FileType * execute ":nnoremap <F10> :!beautifiers -t".&filetype
 nmap <leader>h <Plug>DashSearch
 
 " go
-let g:SuperTabDefaultCompletionType = "context"
+autocmd FileType go let g:SuperTabDefaultCompletionType = "context"
 let g:go_def_mode = "godef"
 let g:go_fmt_command = "goimports"
 let g:go_fmt_experimental = 1

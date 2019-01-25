@@ -4,7 +4,7 @@ Plugin 'guileen/vim-node-dict'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'mattn/emmet-vim'
 Plugin 'moll/vim-node'
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
+Plugin 'mdempsky/gocode'
 Plugin 'rizzatti/dash.vim'
 Plugin 'rizzatti/funcoo.vim'
 Plugin 'tomasr/molokai'
