@@ -12,7 +12,6 @@ export NODE_PATH="/usr/local/lib/node_modules/"
 export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="/usr/local/opt/mongodb-osx-x86_64-3.6.2/bin:$PATH"
-export PATH="/usr/local/opt/protoc-3.6.1-osx-x86_64/bin:$PATH"
 export PYTHONSTARTUP="$HOME/.pythonrc"
 
 # aliases
