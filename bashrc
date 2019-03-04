@@ -17,7 +17,6 @@ export PYTHONSTARTUP="$HOME/.pythonrc"
 # aliases
 alias ag="ag --pager 'less -r'"
 alias gu='git commit -am $(date +%s)'
-alias j='ssh jump'
 alias ls='ls -G'
 alias rm='rm -i'
 alias vi="/usr/local/bin/vim"
